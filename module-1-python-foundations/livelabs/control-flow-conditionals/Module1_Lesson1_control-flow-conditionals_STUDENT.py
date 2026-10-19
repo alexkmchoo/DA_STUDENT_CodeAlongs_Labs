@@ -29,6 +29,12 @@ print('----- 1. If/Elif/Else, Live -----')
 # TODO: set temperature to any number, then write the
 # if/elif/else check yourself before revealing the answer
 temperature = 71
+if temperature > 85:
+    print(f"NAHH it's {temperature} degrees. I'm sweating ode")
+elif temperature < 50:
+    print(f"NAHH it's {temperature} degrees. It's madddd brick")
+else:
+    print(f"Ouuu it's {temperature} degrees. It's nice out")
 
 
 # ===== 2. For Loop, Live =====
@@ -36,18 +42,20 @@ temperature = 71
 print('----- 2. For Loop, Live -----')
 # TODO: write a for loop that prints every value in scores
 scores = [88, 92, 75, 100]
-
+for grade in scores:
+    print(grade)
 
 # ===== 3. range() Generates Numbers to Loop Over =====
 # Count from 0 up to 4 with range(), one number per line. Notice it stops
 # before 5.
 print('----- 3. range() Generates Numbers to Loop Over -----')
 # TODO: use range() to print the numbers 0 through 4
-
+for i in range(5):
+    print(i)
 # PREDICT before you run: Change range(5) to range(3). What does the loop print
 #                         now?
 # Your answer:
-#
+# if you change it to range(3) it will print 0, 1, 2
 #
 
 
@@ -58,18 +66,21 @@ print('----- 3. range() Generates Numbers to Loop Over -----')
 # DISCUSS: Before you write the While Loop, Live code, put these steps in the
 #          order Python runs them. A: Run the loop body. B: Check the condition
 #          again. C: Check the condition the first time.
-# Your answer:
+# Your answer: C, A, B
 #
 #
 print('----- 4. While Loop, Live -----')
 # TODO: write a while loop that prints 0, 1, 2, 3 -
 # think carefully about the condition
 count = 0
+while count <=3:
+    print(count)
+    count += 1
 
 # PREDICT before you run: In the While Loop, Live code above, change count <= 3
 #                         to count < 3. How many numbers print?
-# Your answer:
-#
+# Your answer: 
+# 3 numbers print : 0, 1, and 2
 #
 
 
@@ -80,3 +91,8 @@ print('----- 5. Loop and Conditional, Together -----')
 # TODO: loop over scores; for each one, print "great job"
 # if it's 90 or above, otherwise print "keep practicing"
 scores = [88, 92, 75, 100]
+for score in scores:
+    if score >= 90:
+        print(f"Wow great job! You got a {score}")
+    else:
+        print(f"I'm disappointed.I expected better. You only got a {score}")
