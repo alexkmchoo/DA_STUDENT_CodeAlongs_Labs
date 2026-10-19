@@ -44,12 +44,13 @@ SUBMIT
 
 # 1. What does one row represent?
 # Your answer:
-#
+#  One row represents a volunteer shift, containing the volunteer's name, the day of the week, and the number of hours worked during that shift.
 #
 
 # 2. Which fields hold numbers, and which hold text?
 # Your answer:
-#
+#  The fields that hold numbers is hours field
+#  The fields that hold text is the volunteer and day field
 #
 
 # 3. What already looks wrong, missing or inconsistent?
@@ -91,8 +92,7 @@ with open("data/volunteer_shifts.txt") as f:
 long_shifts = 0
 for shift in shifts:
     hours = int(shift.split(",")[2])
-    # TODO: write the test for a long shift. The coordinator counts a
-    #       shift of 4 hours or more.
+    print(shift, hours >= 4)
     if None:
         # TODO: this is the counting line. Move long_shifts on by one.
         long_shifts = None
