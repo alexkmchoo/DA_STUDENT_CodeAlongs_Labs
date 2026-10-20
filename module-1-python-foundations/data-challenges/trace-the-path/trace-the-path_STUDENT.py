@@ -55,7 +55,7 @@ SUBMIT
 
 # 3. What already looks wrong, missing or inconsistent?
 # Your answer:
-#
+# Nothing looks wrong, missing, or inconsistent. There is an extra line below line 15, where the data ends but thats it.
 #
 
 ############################################################################
@@ -85,22 +85,19 @@ SUBMIT
 # If the two differ, say which line you mis-read. Do not edit the
 # prediction.
 
-with open("data-challenges/data/volunteer_shifts.txt") as f:
+with open("volunteer_shifts.txt") as f:
     shifts = [line for line in f.read().splitlines()
               if line and not line.startswith("#")]
 
 long_shifts = 0
 for shift in shifts:
     hours = int(shift.split(",")[2])
-    print(shift, hours >= 4)
-    if None:
-        # TODO: this is the counting line. Move long_shifts on by one.
-        long_shifts = None
-
+    if hours >= 4:
+        long_shifts += 1
 print("shifts of 4+ hours:", long_shifts)
 
 # Your answer:
-#
+# shifts of 4+ hours: 5
 #
 
 # ===== Step 2: Total the Week's Hours, Printing the Running Total Each Pass =====
@@ -124,14 +121,25 @@ print("shifts of 4+ hours:", long_shifts)
 total = 0
 for shift in shifts:
     volunteer, day, hours = shift.split(",")
-    # TODO: add this shift's hours onto the running total. Mind the
-    #       type: everything that came out of that split is a string.
-    total = None
-    # TODO: print one line per pass: the day, the volunteer, and the
-    #       total so far. This printed line IS the tracing tool.
-    print(day, volunteer, "| running total:", None)
-
+    hours = int(hours)
+    total += hours
+    print(day, volunteer, "| running total:", total)
 print("total hours logged this week:", total)
+
+# outcome : 
+# Mon Amara | running total: 3
+# Mon Luis | running total: 5
+# Tue Amara | running total: 9
+# Tue Priya | running total: 10
+# Wed Dev | running total: 15
+# Wed Luis | running total: 17
+# Thu Amara | running total: 21
+# Thu Priya | running total: 27
+# Fri Dev | running total: 28
+# Fri Amara | running total: 31
+# Fri Luis | running total: 35
+# Fri Priya | running total: 37
+# total hours logged this week: 37
 
 # ----- Share Out: Day 1 -----
 # Last 15 minutes, back together as a class. Bring:
@@ -179,19 +187,15 @@ volunteers = []
 days = []
 for shift in shifts:
     volunteer, day, hours = shift.split(",")
-    # TODO: only append a volunteer this list does not already have.
-    if None:
+    if volunteer not in volunteers: 
         volunteers.append(volunteer)
-    # TODO: the same test again, for the day.
-    if None:
+    if day not in days:
         days.append(day)
 
 checks = 0
 for volunteer in volunteers:
-    # TODO: the inner loop. One pass per weekday, for each volunteer.
-    for day in None:
+    for day in days:
         checks = checks + 1
-
 print(len(volunteers), "volunteers x", len(days), "days =", checks)
 
 # ===== Step 4: Fix the Off-by-One and Print the Row It Never Reached =====
@@ -216,11 +220,8 @@ print(len(volunteers), "volunteers x", len(days), "days =", checks)
 buggy_seen = 0
 for i in range(len(shifts) - 1):
     buggy_seen = buggy_seen + 1
-
 fixed_seen = 0
-# TODO: write the loop header that visits EVERY row, not all but one.
-#       The body below is already correct. Only the range changes.
-for i in None:
+for i in range(len(shifts)):
     fixed_seen = fixed_seen + 1
 
 print("rows in the file:   ", len(shifts))
@@ -228,7 +229,7 @@ print("buggy loop visited: ", buggy_seen)
 print("fixed loop visited: ", fixed_seen)
 # TODO: print the one row the buggy loop never reached. Reach into the
 #       list by position; do not retype the row by hand.
-print("the row it never saw:", None)
+print("the row it never saw:", len(shifts) - 1)
 
 # ----- Share Out: Day 2 -----
 # Last 15 minutes, back together as a class. Bring:
