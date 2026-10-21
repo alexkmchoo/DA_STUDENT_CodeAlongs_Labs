@@ -44,17 +44,17 @@ SUBMIT
 
 # 1. What does one row represent?
 # Your answer:
-#
+# the data of each member, the class they're taking, and number of sessions
 #
 
 # 2. Which fields hold numbers, and which hold text?
 # Your answer:
-#
+# The member field and the class_name field holds text and the sessions field comes number
 #
 
 # 3. What already looks wrong, missing or inconsistent?
 # Your answer:
-#
+# Nothing looks wrong, the person that made the dataset could have put the column names in another line, but other than that its fine
 #
 
 ############################################################################
@@ -119,9 +119,12 @@ print("swim only:  ", total)
 # other only puts something on the screen.
 
 def count_long_bookings(records, minimum):
-    # TODO: count the records whose sessions number is `minimum` or more
-    # TODO: return the count
-    pass
+    count = 0
+    for record in records:
+        member, class_name, sessions = record.split(',')
+        if int(sessions) >= minimum:
+            count += 1
+    return count 
 
 def show_long_bookings(records, minimum):
     # TODO: print a sentence with the same count in it. Only print.
