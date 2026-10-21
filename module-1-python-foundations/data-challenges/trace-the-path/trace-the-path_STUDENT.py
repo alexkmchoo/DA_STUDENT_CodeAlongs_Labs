@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 """Data Challenge: Trace the Path
 GitBook Quest 1.1: Trace the Path
 
@@ -224,12 +224,16 @@ fixed_seen = 0
 for i in range(len(shifts)):
     fixed_seen = fixed_seen + 1
 
+buggy_seen = 0
+for i in range(len(shifts) - 1):
+    buggy_seen = buggy_seen + 1
+fixed_seen = 0
+for i in range(len(shifts)):
+    fixed_seen = fixed_seen + 1
 print("rows in the file:   ", len(shifts))
 print("buggy loop visited: ", buggy_seen)
 print("fixed loop visited: ", fixed_seen)
-# TODO: print the one row the buggy loop never reached. Reach into the
-#       list by position; do not retype the row by hand.
-print("the row it never saw:", len(shifts) - 1)
+print("the row it never saw:", shifts[-1])
 
 # ----- Share Out: Day 2 -----
 # Last 15 minutes, back together as a class. Bring:
@@ -250,5 +254,5 @@ print("the row it never saw:", len(shifts) - 1)
 # Be ready to answer "why did you do it that way?"
 
 # Your notes for the share out:
-#
+# we didnt have enough time to share out in class
 #
