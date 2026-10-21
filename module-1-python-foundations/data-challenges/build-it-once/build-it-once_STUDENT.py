@@ -83,15 +83,20 @@ with open("data/rec_center_signups.txt") as f:
                if line and not line.startswith("#")]
 
 def total_sessions(records):
-    # TODO: add up the sessions column across every record in `records`
-    # TODO: hand the total back to whoever called this. Do not print it.
-    pass
+    total = 0
+    for record in records:
+        member, class_name, sessions = record.split(",")
+        total += int(sessions)
+    return total
 
 swim_only = []
-# TODO: fill swim_only with just the Swim records
-
+total = 0
+for record in signups:
+    member, class_name, sessions = record.split(",")
+    if class_name == "Swim":
+        total += int(sessions)
 print("every class:", total_sessions(signups))
-print("swim only:  ", total_sessions(swim_only))
+print("swim only:  ", total)
 
 # ===== Step 2: Count Long Bookings at Two Different Cutoffs With One Function =====
 # The board changed the long-booking cutoff from 4 sessions to 2. Answering
