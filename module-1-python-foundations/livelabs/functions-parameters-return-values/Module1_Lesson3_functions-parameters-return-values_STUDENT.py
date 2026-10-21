@@ -26,16 +26,24 @@ fill it in before you run the file again.
 # Build a reusable greeting: one function, called twice, prints the welcome
 # message two times.
 print('----- 1. Define and Call, Live -----')
-# TODO: define a function named greet that prints a welcome
-# message, then call it twice
+welcome = "Hey welcome to class"
+def greet(welcome):
+    total = 0
+    while total < 2:
+        print(welcome)
+        total += 1
+greet(welcome)
 
 
 # ===== 2. Parameters, Live =====
 # Make greet work for anyone: pass in a name and print a personal welcome for
 # Jordan and Amara.
 print('----- 2. Parameters, Live -----')
-# TODO: add a name parameter to greet, and print a
-# personalized welcome message for each of 2 names
+
+def greet(user_name):
+    print("welcome:" + user_name)
+greet("Paula")
+greet("Bruno")
 
 # DISCUSS: The code is def double(n): print(n * 2), then double(5). Put the
 #          steps of that call in order. A: n becomes 5. B: the body runs. C:
@@ -55,6 +63,16 @@ print('----- 2. Parameters, Live -----')
 # Send a value back with return so you can use it in math. double(5) plus 1
 # should print 11.
 print('----- 3. Return, Live -----')
+def double(n):
+    return n * 2
+print(double(90) + 1)
+
+def double(n):
+    n += 1
+    return n * 2
+print(double(90))
+
+
 # TODO: write double(n) using return (not print), then use
 # its result in an expression - add 1 to it and print that
 
