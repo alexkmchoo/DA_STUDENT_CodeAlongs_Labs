@@ -198,6 +198,9 @@ for volunteer in volunteers:
         checks = checks + 1
 print(len(volunteers), "volunteers x", len(days), "days =", checks)
 
+# outcome: 
+# 4 volunteers x 5 days = 20
+
 # ===== Step 4: Fix the Off-by-One and Print the Row It Never Reached =====
 # An earlier version of this report was quietly missing a volunteer's last
 # shift, and nothing ever errored. The broken loop is handed to you in the
@@ -234,6 +237,12 @@ print("rows in the file:   ", len(shifts))
 print("buggy loop visited: ", buggy_seen)
 print("fixed loop visited: ", fixed_seen)
 print("the row it never saw:", shifts[-1])
+
+# outcome:
+# rows in the file:    12
+# buggy loop visited:  11
+# fixed loop visited:  12
+# the row it never saw: Priya,Fri,2
 
 # ----- Share Out: Day 2 -----
 # Last 15 minutes, back together as a class. Bring:
