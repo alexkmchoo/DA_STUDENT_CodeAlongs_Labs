@@ -207,13 +207,21 @@ print("what show_long_bookings handed back:", handed_back)
 sessions_cutoff = 4
 
 def count_reaching_outside(records):
-    # TODO: same count as count_long_bookings, but take NO minimum
-    # parameter. Read sessions_cutoff from outside the function instead.
-    pass
-
+    count = 0
+    for record in records:
+        member, class_name, sessions = record.split(',')
+        if int(sessions) >= sessions_cutoff:
+            count += 1
+    return count
 print("cutoff", sessions_cutoff, "gives", count_reaching_outside(signups))
 
+# counts the same thing as count_long_bookings, but takes no minimum
+# so this means the function is the same, we are finding what to replace "minimum" with
+# which they gave us the variable of sessions_cutoff
+
 sessions_cutoff = 2
+print(count_reaching_outside(signups))
+print(count_long_bookings(signups, 4))
 
 # TODO: call count_reaching_outside(signups) again, unchanged, and print it
 # TODO: print count_long_bookings(signups, 4) underneath for comparison
@@ -245,14 +253,20 @@ sessions_cutoff = 2
 # the steps after it can run.
 
 def log_signup(record, previous_member):
-    # TODO: pull the member name out of `record`
-    # TODO: print the previous member and this one on one line
-    # TODO: return this member's name
-    pass
+        member, class_name, sessions = record.split(',')
+        print(f'Previous member: {previous_member} | This one: {member}')
+        return member
+    
+# TODO: pull the member name out of `record` = seperated with split
+# TODO: print the previous member and this one on one line = printed it
+# TODO: return this member's name = return member
 
 last_member = "nobody yet"
-# TODO: call log_signup on signups[0], then on signups[1], storing
-# what it returns back into last_member each time
+last_member = log_signup(signups[0], last_member)
+last_member = log_signup(signups[1], last_member)
+
+# TODO: call log_signup on signups[0], then on signups[1], storing = called log_signup , argument = signups[0]
+# comma last_member, returns it back into last_member each time
 
 last_seen = "nobody yet"
 
