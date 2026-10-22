@@ -35,21 +35,47 @@ fill it in before you run the file again.
 #
 #
 print('----- 1. Local Scope, Live -----')
+samsung = 70
+def make_total():
+    x = 100
+    return x * samsung
+    
+phone = make_total()
+print(phone)
+    #return x 
+    #print(x)
+#print(x)
+#print(make_total())  
+#print(x)
+
 # TODO: define make_total() with a local variable total set
 # to 100, returning it, then try printing total outside the
 # function and watch what happens
 
 # DISCUSS: Now try a new function. set_x() runs and sets x = 5 inside it, but
 #          print(x) outside raises NameError. Why?
+def set_x():
+    x = 5
+    print(x)
+
+set_x()
+
 # Your answer:
-#
-#
+# because print exists inside the function, if you set it outside python can't read it
+# it cant read what x is since it is outside the function
 
 
 # ===== 2. Reading a Global, Live =====
 # Work out the price of a $100 item with 8% tax, using a tax rate stored
 # outside the function.
 print('----- 2. Reading a Global, Live -----')
+tax_rate = 0.08
+def price_with_tax(price):
+    x = price + (price * tax_rate)
+    return x 
+
+print(price_with_tax(100))
+
 # TODO: define tax_rate as a global, then write
 # price_with_tax(price) that reads it without taking it as
 # a parameter
@@ -58,7 +84,7 @@ print('----- 2. Reading a Global, Live -----')
 #          a new file, without the tax_rate = 0.08 line. It worked here. Why
 #          does it break there?
 # Your answer:
-#
+# it doesn't have a global variable to call to, since in our function we have a global variable tax_rate
 #
 
 
@@ -68,4 +94,8 @@ print('----- 2. Reading a Global, Live -----')
 print('----- 3. Refactor: Global to Parameter -----')
 # TODO: rewrite price_with_tax so tax_rate is a parameter
 # instead of a global it secretly reads
-tax_rate = 0.08
+#tax_rate = 0.08
+def price_with_tax(price, c_tax_rate):
+   return price + (c_tax_rate * price ) 
+
+print(price_with_tax(20000, 1.1))
