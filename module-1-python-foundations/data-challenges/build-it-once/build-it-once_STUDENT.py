@@ -90,13 +90,30 @@ def total_sessions(records):
     return total
 
 swim_only = []
-total = 0
 for record in signups:
     member, class_name, sessions = record.split(",")
     if class_name == "Swim":
-        total += int(sessions)
+        swim_only.append(record)
+        
 print("every class:", total_sessions(signups))
-print("swim only:  ", total)
+print("swim only:  ", total_sessions(swim_only))
+
+# Side note :
+#swim_only = []
+#total = 0
+#for record in signups:
+    #member, class_name, sessions = record.split(",")
+    #if class_name == "Swim":
+        #total += int(sessions)
+#print("swim only:  ", total)
+# this code also worked, I had originally put this as a my code because I did not want to use AI. 
+# my thought process is if the total sessions worked, then it should work for swim only as well
+# It wouldn't print with print("swim only:  ", total_sessions(swim_only)) so I asked AI what was wrong
+# and to explain to me where I went wrong, apparently I did not get it wrong, but there was just one of two 
+# ways to write this code, the .append one I got from AI, but the print total code I had done myself
+# Tina told me to also include my own code here and add a side note saying why this worked and what AI showed me
+
+
 
 # ===== Step 2: Count Long Bookings at Two Different Cutoffs With One Function =====
 # The board changed the long-booking cutoff from 4 sessions to 2. Answering
