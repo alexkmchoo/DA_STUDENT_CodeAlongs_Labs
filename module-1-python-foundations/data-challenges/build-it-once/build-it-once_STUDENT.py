@@ -127,8 +127,8 @@ def count_long_bookings(records, minimum):
     return count 
 
 def show_long_bookings(records, minimum):
-    # TODO: print a sentence with the same count in it. Only print.
-    pass
+    x = count_long_bookings(records, minimum)
+    print(f'{x} bookings have {minimum} or more sessions')
 
 print("returned:", count_long_bookings(signups, 4))
 print("returned:", count_long_bookings(signups, 2))
@@ -137,7 +137,11 @@ handed_back = show_long_bookings(signups, 4)
 print("what show_long_bookings handed back:", handed_back)
 
 # Your answer:
-#
+# every class: 45
+# swim only:   15
+# returned: 7
+# returned: 11
+# 7 sessions has 4 or more sessions
 #
 
 # ----- Share Out: Day 1 -----
@@ -244,8 +248,11 @@ def log_signup_broken(record):
 log_signup_broken(signups[2])
 
 # Your answer:
-#
-#
+# you get an error :UnboundLocalError: local variable 'last_seen' referenced before assignment
+# last_seen was defined already outside the function = "nobody yet", but we assigned it another one 
+# inside the function = record.split(",")[0]
+# This means that it is treated like a local variable, if it was a global variable, it could be called on.
+# 
 
 # ----- Share Out: Day 2 -----
 # Last 15 minutes, back together as a class. Bring:
