@@ -99,13 +99,15 @@ print("every class:", total_sessions(signups))
 print("swim only:  ", total_sessions(swim_only))
 
 # Side note :
-#swim_only = []
-#total = 0
-#for record in signups:
-    #member, class_name, sessions = record.split(",")
-    #if class_name == "Swim":
-        #total += int(sessions)
-#print("swim only:  ", total)
+'''
+swim_only = []
+total = 0
+for record in signups:
+    member, class_name, sessions = record.split(",")
+    if class_name == "Swim":
+        total += int(sessions)
+print("swim only:  ", total)
+'''
 # this code also worked, I had originally put this as a my code because I did not want to use AI. 
 # my thought process is if the total sessions worked, then it should work for swim only as well
 # It wouldn't print with print("swim only:  ", total_sessions(swim_only)) so I asked AI what was wrong
@@ -221,10 +223,10 @@ print("cutoff", sessions_cutoff, "gives", count_reaching_outside(signups))
 
 sessions_cutoff = 2
 print(count_reaching_outside(signups))
+# call count_reaching_outside(signups) again, unchanged, and print it
 print(count_long_bookings(signups, 4))
+# print count_long_bookings(signups, 4) underneath for comparison
 
-# TODO: call count_reaching_outside(signups) again, unchanged, and print it
-# TODO: print count_long_bookings(signups, 4) underneath for comparison
 
 # ===== Step 4: Pass the Last Member In and Out, Then Trigger an UnboundLocalError =====
 # The coordinator wants each sign-up printed next to the one before it. The
@@ -254,12 +256,12 @@ print(count_long_bookings(signups, 4))
 
 def log_signup(record, previous_member):
         member, class_name, sessions = record.split(',')
+        #pull the member name out of `record` = seperated with split
         print(f'Previous member: {previous_member} | This one: {member}')
+        # print the previous member and this one on one line = printed it
         return member
+        # return this member's name
     
-# TODO: pull the member name out of `record` = seperated with split
-# TODO: print the previous member and this one on one line = printed it
-# TODO: return this member's name = return member
 
 last_member = "nobody yet"
 last_member = log_signup(signups[0], last_member)
@@ -407,11 +409,6 @@ for member in list:
 print(f'per-member totals: {per_member_total} | lined up with total sessions : {total_sessions(signups)}')
 # shows the per member total and the total sessions we did in the first part
 
-# TODO: an empty list
-# TODO: a list holding exactly one record
-# TODO: a member name that is not in the file at all
-# TODO: a name that differs from a real member's only by capitalization
-# TODO: then: do the per-member totals add up to the whole-file total?
 
 # ----- Share Out: Day 3 -----
 # Last 15 minutes, back together as a class. Bring:
