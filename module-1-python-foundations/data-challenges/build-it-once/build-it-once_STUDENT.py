@@ -329,15 +329,43 @@ log_signup_broken(signups[2])
 # Three function names. Everything else is yours.
 
 def sessions_in(record):
-    pass
+        member, class_name, sessions = record.split(",")
+        return int(sessions)
+# write sessions_in(record) = def sessions_in(record). pull sessions number = split.
+# return it = return int(sessions)
 
 def signups_for(records, member):
-    pass
+    category = []
+    for record in records:
+        member_name, class_name, sessions = record.split(",")
+        if member_name == member:
+            category.append(record)
+    return category
+        # created a new variable for an empty list, like the swim_only question, append brings them into the list 
+    
 
 def total_for(records, member):
+    x = signups_for(records, member)
+    # created a variable for the function I made above, that calls the other two
+    return total_sessions(x)
+    # returned a previous variable from another function and placed my argument as the new variable I created
+
+
     # This one should get its work done by calling the other two.
     pass
 
+list = []
+# makes an empty list that we are going to put information into
+for record in signups:
+    member_name, class_name, sessions = record.split(",")
+    if member_name not in list:
+        list.append(member_name)
+            #append will push it into the new list, since it's empty
+            # This is similar to the swim_only line of code
+# 
+
+for member in list:
+    print(f'{member} total sessions: {total_for(signups, member)}')
 # TODO: print a line per member
 
 # ===== Step 6: Run total_for() on Five Inputs Nobody Asked For, Then Judge Each Answer =====
@@ -363,6 +391,22 @@ def total_for(records, member):
 # No new functions. Call the ones you already have, on inputs nobody
 # asked for, and write a verdict beside each printed result.
 
+print(total_for([], "Omar"))
+# empty list
+print(total_for(["Nia,Spin,6"], "Nia"))
+# list holding exactly one record
+print(total_for(signups, "Marco"))
+# member name not in file at all, marco
+print(total_for(signups, "nia"))
+# capitalization comparison
+print(signups_for([], "Omar"))
+# signups for on an empty list
+per_member_total = 0
+for member in list:
+   per_member_total += total_for(signups, member)
+print(f'per-member totals: {per_member_total} | lined up with total sessions : {total_sessions(signups)}')
+# shows the per member total and the total sessions we did in the first part
+
 # TODO: an empty list
 # TODO: a list holding exactly one record
 # TODO: a member name that is not in the file at all
@@ -387,5 +431,11 @@ def total_for(records, member):
 # Be ready to answer "why did you do it that way?"
 
 # Your notes for the share out:
-#
-#
+# The prompt for AI, if used, was always :
+# Don't write the code for me unless I say so, instead be a teacher and I am the student here is the code I have so far
+# For step 6, I really struggled with the second prompt "total_for on a list holding exactly one record"
+# I had to ask AI to fill in the gap for me because I tried to put signups, member, class_name, sessions
+# where the ["Nia,Spin,6"] is in print(total_for(["Nia,Spin,6"], "Nia")) 
+# I even tried splitting it again into column names and printing something there, but I couldn't do it
+# while still using total_for like the prompt was asking for
+# AI gave me this answer, but I made sure I understood exactly what it was telling me
