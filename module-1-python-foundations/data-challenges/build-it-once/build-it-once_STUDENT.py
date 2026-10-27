@@ -160,7 +160,7 @@ print("what show_long_bookings handed back:", handed_back)
 # swim only:   15
 # returned: 7
 # returned: 11
-# 7 sessions has 4 or more sessions
+# 7 bookings has 4 or more sessions
 #
 
 # ----- Share Out: Day 1 -----
