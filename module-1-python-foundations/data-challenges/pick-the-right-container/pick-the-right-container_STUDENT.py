@@ -69,10 +69,13 @@ print(f'worst case: {big}, pair loops count on big rows: {big ** 2}')
 # Step 2, answer 1: Before you run: every count you expect, with the arithmetic beside it.
 # Id expect 5 counts, 10, counts, 20 counts, and then 40 counts. If we scan for t999, we have to do 40 counts as well
 # because it doesn't exist so it has to loop through every single thing. The pairs loop is also 40 , so 40 by 40 is 1600
-# Big multiplies the taps by 10 so we will have 400 and if we pair this, we have to do 400 by 400 so we get 160000
+# Big multiplies the taps by 10 so we will have 400 and if we pair this with what is in the loop, 
+# we have to do 400 by 400 so we get 160000
 
 # Step 2, answer 2: The scan's pattern in one sentence, then the pair loop's, with no notation.
-# yo im ngl 
+# As the count goes up one the inner loop also goes up one, so that means when it goes up 40, the inner also
+# goes up 40. Counting the length will change it to 10 times the amount, so that means the inner will 
+# change as well.
 
 
 # ===== Day 2 =====
@@ -108,19 +111,35 @@ print("distinct cards:", len(card_ids))
 print("comparisons the two parallel lists needed:", comparisons)
 print("busiest card:", card_ids[busiest], "with", max(tap_counts), "taps")
 
-# Step 3, answer 1:
-#
-# Step 3, answer 2:
-#
+# Step 3, answer 1: Before you run: how many comparisons do you expect?
+# The highest card_id is C012 in the dataset, so I expect the 40 rows that we have to be multiplied by 12
+# So the number of comparisons I'd expect is 480
+# Step 3, answer 2: After: the real count, and why it is bigger than the number of rows.
+# The real count was 190. There are cards with repeat counts, so it has to be more than the 40 rows.
 
 
 # Step 4: Count Taps Per Card With a Dictionary, and Stations With a Set
-# TODO: assign `taps_by_card` to an empty dict (card ID: tap count)
-# TODO: assign `lookups` to 0
-# TODO: loop over `taps`; add 1 to `lookups`
+taps_by_card = {}
+# assign `taps_by_card` to an empty dict (card ID: tap count)
+lookups = 0
+# assign `lookups` to 0
+for row in taps:
+    lookups += 1
+# loop over `taps`; add 1 to `lookups`
+    if row[1] in taps_by_card:
+        taps_by_card[row[1]] += 1
+    else:
+        taps_by_card[row[1]] = 1
 # TODO: add 1 to row[1]'s count in `taps_by_card`, or set it to 1 if new
+stations = set()
+for row in taps:
+    stations.add(row[2])
 # TODO: assign `stations` to set(); loop over `taps` and .add() row[2]
+repeat_riders = 0
 # TODO: assign `repeat_riders` to 0
+for row in taps_by_card.values():
+    if row > 1:
+        repeat_riders += 1
 # TODO: loop over `taps_by_card`; add 1 to `repeat_riders` if a count is > 1
 
 print("distinct cards:", len(taps_by_card))
@@ -129,14 +148,16 @@ print("unique stations:", len(stations), sorted(stations))
 print("cards that tapped more than once:", repeat_riders)
 print("taps for C001:", taps_by_card["C001"])
 
-# Step 4, answer 1:
-#
-# Step 4, answer 2:
-#
-# Step 4, answer 3:
-#
-# Step 4, answer 4:
-#
+# Step 4, answer 1: Before you run: your lookups prediction and the rule behind it.
+# 40, a dict has to look up all the rows, and there are 40 rows.
+# Step 4, answer 2: Finish "As the Input Size grows..." for the parallel lists, then for the dictionary.
+# As the Input Size grows, the parralel list depends on how many unique cards there is  and the dictionary grows with each lookup
+# Step 4, answer 3: For each container, name its job and how it finds what it needs. What would a list have cost you for stations?
+# Parralel list : pairing a card with its count. Goes through the list until it matches
+# Set : shows how many stations there are, no duplicates are allowed in sets.
+# Dict : pairs each card with their count. Finds it by key indentification.
+# Step 4, answer 4: Which card explains the gap between distinct cards and repeat riders?
+# C012 is the one card that tapped only once.
 
 
 # ===== Day 3 =====
