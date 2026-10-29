@@ -3,9 +3,9 @@
 
 import json
 
-DATA_FILE = "station_taps.csv"  # edit the filepath with the data
+DATA_FILE = "data-challenges/data/station_taps.csv"  # edit the filepath with the data
 
-with open(DATA_FILE) as f:
+with open("/Users/alexc/Documents/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/data/station_taps.csv") as f:
     rows = [line.split(",") for line in f.read().splitlines() if line]
 
 header = rows[0]
@@ -163,34 +163,46 @@ print("taps for C001:", taps_by_card["C001"])
 # ===== Day 3 =====
 
 # Step 5: Save the Summary as JSON and Read the TypeError a Set Causes
-# TODO: replace each None with your Day 2 value; keep `stations` a set
+
+import json
 summary = {
     "service_day": "2026-03-02",
-    "total_taps": None,
-    "distinct_cards": None,
-    "stations": None,
-    "taps_by_card": None,
+    "total_taps": len(taps),
+    "distinct_cards": len(taps_by_card),
+    "stations": stations,
+    "taps_by_card": taps_by_card,
 }
-
 print("about to serialize", len(summary), "keys")
-# TODO: run the file and answer below before you change anything
+# replace each None with your Day 2 value; keep `stations` a set
+#with open ("summary.json", "w") as f:
+    #json.dump(summary, f)
+
+
+
+# run the file and answer below before you change anything
 # TODO: then put # in front of the next two lines so Step 6 can run
 text = json.dumps(summary, indent=2)
 print(text)
 
-# Step 5, answer 1:
-#
-# Step 5, answer 2:
-#
-# Step 5, answer 3:
-#
+# Step 5, answer 1: The last line of the error, exactly as printed.
+# TypeError: Object of type set is not JSON serializable
+# Step 5, answer 2: Which key caused it, and why, in your own words.
+#  The set caused it, JSON can't write sets ("w"). The key itself is stations "keep `stations` a set"
+# Step 5, answer 3: Did about to serialize print before the error? What does that tell you?
+# Yeah it printed before the error so that tells me the dict was fine, but the error occured
+# because JSON had trouble writing the set.
 
 
 # Step 6: Write `tap_summary.json`, Reload It, and Check Which Types Survived
-# TODO: assign summary["stations"] to a type JSON can hold; keep the key
-# TODO: json.dump() `summary` into a with open("tap_summary.json", "w")
-# TODO: replace None with json.load() of "tap_summary.json"
-reloaded = None
+
+summary["stations"] = sorted(stations)
+# assign summary["stations"] to a type JSON can hold; keep the key
+with open ("tap_summary.json", "w") as f:
+    json.dump(summary, f)
+# json.dump() `summary` into a with open("tap_summary.json", "w")
+with open("tap_summary.json", "r") as f:
+    reloaded = json.load(f)
+# replace None with json.load() of "tap_summary.json"
 
 print("total_taps came back as:", reloaded["total_taps"])
 print("taps_by_card came back as a", type(reloaded["taps_by_card"]).__name__)
@@ -198,7 +210,9 @@ print("C001 straight out of the file:", reloaded["taps_by_card"]["C001"])
 print("stations came back as a", type(reloaded["stations"]).__name__)
 print("round trip identical:", reloaded["taps_by_card"] == taps_by_card)
 
-# Step 6, answer 1:
-#
-# Step 6, answer 2:
-#
+# Step 6, answer 1: Can the overnight job get one card's count from this file without the raw log? How do you know?
+# Yes, because we already calculated how many total taps one card has (like c001)
+# this new code only pulls the log from the summary and not the taps we used in day 1
+# Step 6, answer 2: Which container survived the round trip, and which came back as something else?
+# Taps_by_card survived the round trip
+# Stations came back as a list because JSON can't write a set, so it had to change into a list.
