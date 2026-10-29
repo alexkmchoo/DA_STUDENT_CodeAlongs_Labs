@@ -113,10 +113,11 @@ print("busiest card:", card_ids[busiest], "with", max(tap_counts), "taps")
 
 # Step 3, answer 1: Before you run: how many comparisons do you expect?
 # The highest card_id is C012 in the dataset, so I expect the 40 rows that we have to be multiplied by 12
-# So the number of comparisons I'd expect is 480
+# So the number of comparisons I'd expect has to be 480, but there are repeats/cards that dont scan so maybe
+# about just half or less than half 150-240
 # Step 3, answer 2: After: the real count, and why it is bigger than the number of rows.
-# The real count was 190. There are cards with repeat counts, so it has to be more than the 40 rows.
-
+# The real count was 190. The number of rows is 40. Each tap is 12 times because there are 12 cards, which then
+# we multiply by 40 rows, but there are some that don't count.
 
 # Step 4: Count Taps Per Card With a Dictionary, and Stations With a Set
 taps_by_card = {}
