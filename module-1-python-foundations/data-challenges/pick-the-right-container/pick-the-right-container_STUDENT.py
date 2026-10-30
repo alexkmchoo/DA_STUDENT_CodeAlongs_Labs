@@ -180,16 +180,16 @@ print("about to serialize", len(summary), "keys")
 
 # run the file and answer below before you change anything
 # TODO: then put # in front of the next two lines so Step 6 can run
-text = json.dumps(summary, indent=2)
-print(text)
+# text = json.dumps(summary, indent=2)
+# print(text)
 
 # Step 5, answer 1: The last line of the error, exactly as printed.
 # TypeError: Object of type set is not JSON serializable
 # Step 5, answer 2: Which key caused it, and why, in your own words.
-#  The set caused it, JSON can't write sets ("w"). The key itself is stations "keep `stations` a set"
+# The set (stations) caused it, JSON can't write sets. 
 # Step 5, answer 3: Did about to serialize print before the error? What does that tell you?
 # Yeah it printed before the error so that tells me the dict was fine, but the error occured
-# because JSON had trouble writing the set.
+# because JSON had trouble writing the set, json.dump can't dump the set.
 
 
 # Step 6: Write `tap_summary.json`, Reload It, and Check Which Types Survived
@@ -211,7 +211,7 @@ print("round trip identical:", reloaded["taps_by_card"] == taps_by_card)
 
 # Step 6, answer 1: Can the overnight job get one card's count from this file without the raw log? How do you know?
 # Yes, because we already calculated how many total taps one card has (like c001)
-# this new code only pulls the log from the summary and not the taps we used in day 1
+# this new code only stores the results from the summary and not the taps we used in day 1
 # Step 6, answer 2: Which container survived the round trip, and which came back as something else?
 # Taps_by_card survived the round trip
 # Stations came back as a list because JSON can't write a set, so it had to change into a list.
