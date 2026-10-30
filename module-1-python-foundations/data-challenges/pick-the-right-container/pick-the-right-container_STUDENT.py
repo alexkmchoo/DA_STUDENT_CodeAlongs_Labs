@@ -35,16 +35,16 @@ print("comparisons to find T040:", scan_for("T040", taps))
 print("comparisons to find T999:", scan_for("T999", taps))
 
 # Step 1, answer 1: Before you run: your predicted counts for T001, T040 and T999, and how you got each.
-
+# Predicted each count simply by looking at the dataset
 # Predicted count for T001: 1, its the first one looking at the dataset
-# Predicted count for T040: 41, its the 41st row so it has to check all 41
-# Predicted count for T999: 41, it doesn't exist, so it has to check all 41 as well
+# Predicted count for T040: 40, its the 40th row so it has to check all 40 
+# Predicted count for T999: 40, it doesn't exist, so it has to check all 40 rows as well
 
 # Step 1, answer 2: Which of the three counts should you plan around, and why?
 
-# We should plan around the 2nd and 3rd prediction because there are 40 rows of data here.
+# We should plan around the 2nd and 3rd prediction because there are 40 rows of data here, which is the worst case
 # We won't always have the luxury of the first one like the first prediction
-# We have to plan to look at like row 27, 38, etc.
+# A search for something like T040 or T999 always counts the maximum
 
 
 # Step 2: Print Scan Cost at 5 to 40 Rows, Then Count a Nested Pair Loop
@@ -73,10 +73,7 @@ print(f'worst case: {big}, pair loops count on big rows: {big ** 2}')
 # we have to do 400 by 400 so we get 160000
 
 # Step 2, answer 2: The scan's pattern in one sentence, then the pair loop's, with no notation.
-# As the count goes up one the inner loop also goes up one, so that means when it goes up 40, the inner also
-# goes up 40. Counting the length will change it to 10 times the amount, so that means the inner will 
-# change as well.
-
+# The row went up 10 times in big = len(taps) * 10, which means the work also goes up 10 times. The pair loops goes up 10 times as well because the number of pairs goes up with the rows
 
 # ===== Day 2 =====
 
