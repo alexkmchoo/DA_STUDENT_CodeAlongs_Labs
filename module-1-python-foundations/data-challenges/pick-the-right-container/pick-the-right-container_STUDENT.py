@@ -113,8 +113,8 @@ print("busiest card:", card_ids[busiest], "with", max(tap_counts), "taps")
 # So the number of comparisons I'd expect has to be 480, but there are repeats/cards that dont scan so maybe
 # about just half or less than half 150-240
 # Step 3, answer 2: After: the real count, and why it is bigger than the number of rows.
-# The real count was 190. The number of rows is 40. Each tap is 12 times because there are 12 cards, which then
-# we multiply by 40 rows, but there are some that don't count.
+# The real count was 190. The number of rows is 40. Each tap is up to 12 times because there are 12 cards, which then
+# we multiply by 40 rows, but it isn't 480 because, like mentioned it taps up to 12 times and not 12 times exactly
 
 # Step 4: Count Taps Per Card With a Dictionary, and Stations With a Set
 taps_by_card = {}
@@ -147,13 +147,14 @@ print("cards that tapped more than once:", repeat_riders)
 print("taps for C001:", taps_by_card["C001"])
 
 # Step 4, answer 1: Before you run: your lookups prediction and the rule behind it.
-# 40, a dict has to look up all the rows, and there are 40 rows.
+# 40, a dict has to look up once per tap. There are 40 rows.
 # Step 4, answer 2: Finish "As the Input Size grows..." for the parallel lists, then for the dictionary.
-# As the Input Size grows, the parralel list depends on how many unique cards there is  and the dictionary grows with each lookup
+# As the Input Size grows, the parralel list grows with with the number of rows times the distinct cards. The dictionary grows with the number of rows because it's once per lookup.
 # Step 4, answer 3: For each container, name its job and how it finds what it needs. What would a list have cost you for stations?
 # Parralel list : pairing a card with its count. Goes through the list until it matches
 # Set : shows how many stations there are, no duplicates are allowed in sets.
 # Dict : pairs each card with their count. Finds it by key indentification.
+# A list would have costed more time because it would have to check if the station is already in the list, whereas sets automatically cannot contain duplicates.
 # Step 4, answer 4: Which card explains the gap between distinct cards and repeat riders?
 # C012 is the one card that tapped only once.
 
