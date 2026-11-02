@@ -35,16 +35,16 @@ print("comparisons to find T040:", scan_for("T040", taps))
 print("comparisons to find T999:", scan_for("T999", taps))
 
 # Step 1, answer 1: Before you run: your predicted counts for T001, T040 and T999, and how you got each.
-
+# Predicted each count simply by looking at the dataset
 # Predicted count for T001: 1, its the first one looking at the dataset
-# Predicted count for T040: 41, its the 41st row so it has to check all 41
-# Predicted count for T999: 41, it doesn't exist, so it has to check all 41 as well
+# Predicted count for T040: 40, its the 40th row so it has to check all 40 
+# Predicted count for T999: 40, it doesn't exist, so it has to check all 40 rows as well
 
 # Step 1, answer 2: Which of the three counts should you plan around, and why?
 
-# We should plan around the 2nd and 3rd prediction because there are 40 rows of data here.
+# We should plan around the 2nd and 3rd prediction because there are 40 rows of data here, which is the worst case
 # We won't always have the luxury of the first one like the first prediction
-# We have to plan to look at like row 27, 38, etc.
+# A search for something like T040 or T999 always counts the maximum
 
 
 # Step 2: Print Scan Cost at 5 to 40 Rows, Then Count a Nested Pair Loop
@@ -73,10 +73,7 @@ print(f'worst case: {big}, pair loops count on big rows: {big ** 2}')
 # we have to do 400 by 400 so we get 160000
 
 # Step 2, answer 2: The scan's pattern in one sentence, then the pair loop's, with no notation.
-# As the count goes up one the inner loop also goes up one, so that means when it goes up 40, the inner also
-# goes up 40. Counting the length will change it to 10 times the amount, so that means the inner will 
-# change as well.
-
+# The row went up 10 times in big = len(taps) * 10, which means the work also goes up 10 times. The pair loops goes up 10 times as well because the number of pairs goes up with the rows
 
 # ===== Day 2 =====
 
@@ -116,8 +113,8 @@ print("busiest card:", card_ids[busiest], "with", max(tap_counts), "taps")
 # So the number of comparisons I'd expect has to be 480, but there are repeats/cards that dont scan so maybe
 # about just half or less than half 150-240
 # Step 3, answer 2: After: the real count, and why it is bigger than the number of rows.
-# The real count was 190. The number of rows is 40. Each tap is 12 times because there are 12 cards, which then
-# we multiply by 40 rows, but there are some that don't count.
+# The real count was 190. The number of rows is 40. Each tap is up to 12 times because there are 12 cards, which then
+# we multiply by 40 rows, but it isn't 480 because, like mentioned it taps up to 12 times and not 12 times exactly
 
 # Step 4: Count Taps Per Card With a Dictionary, and Stations With a Set
 taps_by_card = {}
@@ -150,13 +147,14 @@ print("cards that tapped more than once:", repeat_riders)
 print("taps for C001:", taps_by_card["C001"])
 
 # Step 4, answer 1: Before you run: your lookups prediction and the rule behind it.
-# 40, a dict has to look up all the rows, and there are 40 rows.
+# 40, a dict has to look up once per tap. There are 40 rows.
 # Step 4, answer 2: Finish "As the Input Size grows..." for the parallel lists, then for the dictionary.
-# As the Input Size grows, the parralel list depends on how many unique cards there is  and the dictionary grows with each lookup
+# As the Input Size grows, the parralel list grows with with the number of rows times the distinct cards. The dictionary grows with the number of rows because it's once per lookup.
 # Step 4, answer 3: For each container, name its job and how it finds what it needs. What would a list have cost you for stations?
 # Parralel list : pairing a card with its count. Goes through the list until it matches
 # Set : shows how many stations there are, no duplicates are allowed in sets.
 # Dict : pairs each card with their count. Finds it by key indentification.
+# A list would have costed more time because it would have to check if the station is already in the list, whereas sets automatically cannot contain duplicates.
 # Step 4, answer 4: Which card explains the gap between distinct cards and repeat riders?
 # C012 is the one card that tapped only once.
 
@@ -182,16 +180,16 @@ print("about to serialize", len(summary), "keys")
 
 # run the file and answer below before you change anything
 # TODO: then put # in front of the next two lines so Step 6 can run
-text = json.dumps(summary, indent=2)
-print(text)
+# text = json.dumps(summary, indent=2)
+# print(text)
 
 # Step 5, answer 1: The last line of the error, exactly as printed.
 # TypeError: Object of type set is not JSON serializable
 # Step 5, answer 2: Which key caused it, and why, in your own words.
-#  The set caused it, JSON can't write sets ("w"). The key itself is stations "keep `stations` a set"
+# The set (stations) caused it, JSON can't write sets. 
 # Step 5, answer 3: Did about to serialize print before the error? What does that tell you?
 # Yeah it printed before the error so that tells me the dict was fine, but the error occured
-# because JSON had trouble writing the set.
+# because JSON had trouble writing the set, json.dump can't dump the set.
 
 
 # Step 6: Write `tap_summary.json`, Reload It, and Check Which Types Survived
@@ -213,7 +211,7 @@ print("round trip identical:", reloaded["taps_by_card"] == taps_by_card)
 
 # Step 6, answer 1: Can the overnight job get one card's count from this file without the raw log? How do you know?
 # Yes, because we already calculated how many total taps one card has (like c001)
-# this new code only pulls the log from the summary and not the taps we used in day 1
+# this new code only stores the results from the summary and not the taps we used in day 1
 # Step 6, answer 2: Which container survived the round trip, and which came back as something else?
 # Taps_by_card survived the round trip
 # Stations came back as a list because JSON can't write a set, so it had to change into a list.
