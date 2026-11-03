@@ -75,32 +75,43 @@ print("passed Day 1 validation:", valid)
 # Step 3: Build the Days-Open Report With No Protection and Watch It Crash
 total_days = 0
 counted = 0
+# assign `total_days` and `counted` to 0
 for row in rows:
-    try:
-        
-# TODO: assign `total_days` and `counted` to 0
-# TODO: loop over `rows`; `continue` past any row validate_request() rejects
-days_open = int(row[4])
-# TODO: assign `days_open` to int() of the row's fourth field
-total_days + days_open
-counted +=1
-# TODO: add `days_open` to `total_days` and 1 to `counted`
-print(f'days open: {days_open}
-# TODO: print the row's ID, "days open:" and `days_open`
-# TODO: after your answers, comment out this step so Step 4 can run
+    ok, reason = validate_request(row)
+    if not ok: 
+        continue
+    x = row.split(',')
+# loop over `rows`; `continue` past any row validate_request() rejects
+    days_open = int(x[3])
+# assign `days_open` to int() of the row's fourth field
+    total_days += days_open
+    counted +=1
+# add `days_open` to `total_days` and 1 to `counted`
+    print(x[0], "Days open:", days_open)
+# print the row's ID, "days open:" and `days_open`
+# after your answers, comment out this step so Step 4 can run
 
 print("average days open:", total_days / counted)
 
-# Step 3, answer 1:
-#
-# Step 3, answer 2:
-#
-# Step 3, answer 3:
-#
+# Step 3, answer 1: Before you run: how many report lines print before it crashes, and which row stops it?
+# 5 report lines will print. row 7 stops it because there will be a value error. It skips SR1004 because there is a missing borough value.
+# Step 3, answer 2: The last line of the traceback, exactly as printed, and how many rows were counted before it.
+# ValueError: invalid literal for int() with base 10: '3 days'
+# 7 rows were counted before the error.
+# Step 3, answer 3: What happens to the rows the loop never reached?
+# The code crashes, so it never reaches the remaining 8 rows, which are the unprocessed rows, after the error. 
+# This means that the total_days and counted stop part way and also means the average is also never reached because the line is never reached
 
 
 # Step 4: Rebuild the Report So Every Row Is Counted or Skipped
 def check_days_open(value):
+    try:
+        days = int(value)
+    except ValueError:
+        print(f"False, days_open is not a number: {value}")
+    if days < 0:
+        print(f'False, days_open is negative: {value}')
+        return True, ok
     # TODO: in a try, assign `days` to int(value)
     # TODO: in except ValueError, return False and a reason
     # TODO: make that reason "days_open is not a number: " plus `value`
