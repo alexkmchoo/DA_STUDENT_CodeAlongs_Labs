@@ -29,21 +29,29 @@ fill it in before you run the file again.
 # This is supposed to raise ValueError: run it, read the traceback, then
 # comment out the raising line so the rest of the file runs.
 print('----- 1. Watch This Crash -----')
-quantity = "abc"
-count = int(quantity)
-print("Converted:", count)
-
+"""try:
+    quantity = "5" + 3
+    count = int(quantity)
+    print("Converted:", count)
+except ValueError as pbj:
+    print(f"Raised ValueError as expected: {pbj}")
+except Exception as pbj:
+    print(f'FAILED: expected ValueError, got {type(pbj).__name__}: {pbj} ')
+    raise SystemExit(1)
+else:
+    print("Failed, expected ValueError, but nothing was raised")
+    raise SystemExit(1)"""
 # PREDICT before you run: This crash is a ValueError. Which error would "5" + 3
 #                         raise? ValueError, TypeError or NameError?
 # Your answer:
-#
+#  Type error, can't add a string with a number
 #
 #
 # PREDICT before you run: A function reads a variable that was defined only
 #                         inside another function. Which error does Python
 #                         raise?
 # Your answer:
-#
+# 
 #
 
 
@@ -51,11 +59,15 @@ print("Converted:", count)
 # Use try and except so a bad number prints a friendly message instead of
 # crashing.
 print('----- 2. Catching the Crash -----')
-# TODO: set quantity = "abc"
-# TODO: inside a try block, convert it to int and print "Converted:"
-# plus the result
-# TODO: in an except ValueError block, print "That's not a valid
-# number."
+quantity = "abc" 
+# set quantity = "abc"
+try: 
+    convert = int(quantity)
+    print("Converted:", convert)
+    # inside a try block, convert it to int and print "Converted:" plus the result
+except ValueError as pbj:
+    print("That's not a valid number.")
+# in an except ValueError block, print "That's not a valid number."
 
 # DISCUSS: In the door-handle analogy, which part of this code is reacting once
 #          you find the door locked?
@@ -73,14 +85,25 @@ print('----- 2. Catching the Crash -----')
 # Write validate_batch so it catches two kinds of bad lines, each with its own
 # message, and keeps going.
 print('----- 3. Putting It Together: Two except Clauses -----')
+def validate_batch(lines):
+    for line in lines:
+            try:
+                fields = line.split(',')
+                print("OK:", fields[1], int(fields[2]))
+            except IndexError:
+                print("Bad format:", line)
+            except ValueError:
+                print("Bad quantity:", line)
 # TODO: define validate_batch(lines)
 # TODO: for each line, inside a try block: split on ",", print
 # "OK:" with fields[1] and int(fields[2])
 # TODO: add an except IndexError clause printing "Bad format:" + line
 # TODO: add an except ValueError clause printing "Bad quantity:" + line
 
+lines = ["ADD,Chess,4", "REMOVE,Uno", "ADD,Dice,two"]
 # TODO: create a list called lines with these 3 strings:
 # "ADD,Chess,4", "REMOVE,Uno", "ADD,Dice,two"
+validate_batch(lines)
 # TODO: call validate_batch(lines)
 
 # PREDICT before you run: For "REMOVE,Uno", which step raises the error?
