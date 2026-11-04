@@ -28,17 +28,18 @@ fill it in before you run the file again.
 print('----- 1. Step 1: A Formatted Listing -----')
 # TODO: create a list called games of (title, players) tuples:
 # ("Chess", 4), ("Checkers", 6), ("Clue", 1), ("Uno", 8)
-
-
-# TODO: define summarize_batch(games) that prints one formatted
-# line per game: "{title}: {players} available"
-
-
-# TODO: call summarize_batch(games)
+games = [("Chess", 4), ("Checkers", 6), ("Clue", 1), ("Uno", 8)]
+def summarize_batch(games):
+    # define summarize_batch(games) that prints one formatted
+    for title, players in games:
+        print(f"{title}: {players} avaiable")
+        # line per game: "{title}: {players} available"
+summarize_batch(games)
+# call summarize_batch(games)
 
 # PREDICT before you run: What is the third line this code prints?
 # Your answer:
-#
+# Clue, 1 avaiable
 #
 
 
@@ -47,16 +48,21 @@ print('----- 1. Step 1: A Formatted Listing -----')
 # players.
 print('----- 2. Step 2: Add a Low-Availability Alert -----')
 # TODO: keep Step 1's listing loop
-# TODO: print a blank line, then "Low availability:"
-# TODO: loop over games again; if players < 3, print
-# "  {title} ({players})"
-# TODO: call summarize_batch(games)
+print("\nLow avaiability:")
+# print a blank line, then "Low availability:"
+def summarize_batch1(games):
+    for title, players in games:
+        if players < 3:
+            print(f'{title} ({players})')
+        # loop over games again; if players < 3, print {title} ({players})"
+summarize_batch1(games)
+# call summarize_batch(games)
 
 # PREDICT before you run: In the games list, change Uno from 8 to 2. What
 #                         changes in the output?
 # Your answer:
-#
-#
+# Uno will be apart of low avaiablity as well
+# It will output Clue(1) and Uno(2)
 
 
 # ===== 3. Step 3: Add a Total Count =====
@@ -64,11 +70,13 @@ print('----- 2. Step 2: Add a Low-Availability Alert -----')
 # list.
 print('----- 3. Step 3: Add a Total Count -----')
 # TODO: keep Step 2's listing and alert loops
-# TODO: print a blank line, then f"{len(games)} games total"
-# TODO: call summarize_batch(games)
+print(f"\n{len(games)} games total")
+# print a blank line, then f"{len(games)} games total"
+summarize_batch(games)
+# call summarize_batch(games)
 
 # PREDICT before you run: Add one more game to the games list, like ("Dice",
 #                         5). What prints last?
 # Your answer:
-#
-#
+# Dice : 5 avaiable would print last
+# 5 games total would print as well
