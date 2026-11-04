@@ -107,32 +107,71 @@ print("average days open:", total_days / counted)
 def check_days_open(value):
     try:
         days = int(value)
+        # in a try, assign `days` to int(value)
     except ValueError:
-        print(f"False, days_open is not a number: {value}")
+        return False, "days_open is not a number: " + value
+        # in except ValueError, return False and a reason "days_open is not a number: " plus `value`
     if days < 0:
-        print(f'False, days_open is negative: {value}')
-        return True, ok
-    # TODO: in a try, assign `days` to int(value)
-    # TODO: in except ValueError, return False and a reason
-    # TODO: make that reason "days_open is not a number: " plus `value`
-    # TODO: if `days` is below 0, return False and a reason
-    # TODO: make that reason "days_open is negative: " plus `value`
-    # TODO: return True and "ok"
-    pass
+        return False, "days_open is negative: " + value
+        # if `days` is below 0, return False and a reason "days_open is negative: " plus `value`
+    return True, "ok"
+        # return True and "ok"
+
+# Before running: I predict that it will get caught by the try except ValueError. Since 7.8 is a decimal and 
+# int only takes whole numbers, so it will raise
+print(check_days_open("7.8"))
+print(check_days_open("5"))
+# Rubric exceed step : tests one more bad days_open value and predicts which tool catches it before running.
 
 
-# TODO: assign `total_days`, `counted` and `skipped` to 0
-# TODO: loop over `rows`; unpack validate_request(row) into ok, reason
-# TODO: if ok, unpack check_days_open() of the fourth field into ok, reason
-# TODO: if still ok, add the days to `total_days` and 1 to `counted`
-# TODO: else add 1 to `skipped`; print the ID, "SKIPPED -" and `reason`
+def check_complaint_type(value):
+    if value == "":
+        return False, "complaint type is empty"
+    return True, "ok"
 
-print("counted:", counted, "| skipped:", skipped)
+total_days = 0
+counted = 0
+skipped = 0
+# assign `total_days`, `counted` and `skipped` to 0
+for row in rows:
+    ok, reason = validate_request(row)
+    # loop over `rows`; unpack validate_request(row) into ok, reason
+    if not ok:
+        print(row.split(",")[0], "SKIPPED - " + reason)
+        # else add 1 to `skipped`; print the ID, "SKIPPED -" and `reason`
+        skipped +=1
+        continue
+    fields = row.split(',')
+    ok, reason = check_days_open(fields[3])
+    # if ok, unpack check_days_open() of the fourth field into ok, reason
+    if not ok:
+        print(fields[0], "SKIPPED - " + reason)
+        # else add 1 to `skipped`; print the ID, "SKIPPED -" and `reason`
+        skipped += 1
+        continue
+    ok, reason = check_complaint_type(fields[1])
+    # Rubric exceed step : adds a third check function for another field and calls it in the Step 4 loop.
+    if not ok:
+        print(fields[0], "SKIPPED - " + reason)
+        # else add 1 to `skipped`; print the ID, "SKIPPED -" and `reason`
+        skipped += 1
+        continue
+    days_open = int(fields[3])
+    total_days += days_open
+    counted += 1
+    # if still ok, add the days to `total_days` and 1 to `counted`
+total = counted + skipped
+
+print("counted:", counted, "| skipped:", skipped, "| total:", total)
 print("average days open:", round(total_days / counted, 1))
 
-# Step 4, answer 1:
-#
-# Step 4, answer 2:
-#
-# Step 4, answer 3:
-#
+if counted + skipped != len(rows):
+    print(f"Warning! total does not equal: {len(rows)}")
+    # Rubric exceed step : adds code that prints a warning when counted plus skipped is not the row count.
+
+# Step 4, answer 1: Before you run: how many rows get skipped now, and which ones did your Day 1 validator let through?
+# 5 rows get skipped. The Day 1 validator lets 2 through (SR 1007 and SR 1013).
+# Step 4, answer 2: For 3 days and for -3: did an if or a try catch it, and could the other tool have?
+# The try/expect catches this, 3 days it not an int and we stated in the function if days < 0 , which a negative value is.
+# Step 4, answer 3: Does counted plus skipped account for every row? Show the sum.
+# Yes, this was the output : counted: 10 | skipped: 5 | total: 15 
