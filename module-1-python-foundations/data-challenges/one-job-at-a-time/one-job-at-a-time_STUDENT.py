@@ -3,7 +3,7 @@
 
 import json
 
-DATA_FILE = "pantry_donations.csv"  # edit the filepath with the data
+DATA_FILE = "/Users/alexc/Documents/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/data/pantry_donations.csv"  # edit the filepath with the data
 
 
 # ===== Day 1 =====
@@ -20,20 +20,40 @@ def read_donations(path):
 
 
 def validate_donation(record):
-    # TODO: add a one-sentence docstring naming its one job
-    # TODO: assign `parts` to `record` split on commas
-    # TODO: return False, "wrong field count" if `parts` lacks 5 fields
-    # TODO: return False, "missing category" if parts[2].strip() is ""
-    # TODO: in a try, call float(parts[3])
-    # TODO: in except ValueError, return False, "pounds is not a number"
-    # TODO: return True and ""
-    pass
+    """Validating a donation record"""
+    # add a one-sentence docstring naming its one job
+    parts = record.split(',')
+    # assign `parts` to `record` split on commas
+    if len(parts) != 5:
+        return False, "wrong field count"
+    # return False, "wrong field count" if `parts` lacks 5 fields
+    if parts[2].strip() == '':
+        return False, "missing category"
+    # return False, "missing category" if parts[2].strip() is ""
+    try:
+        float(parts[3])
+        # in a try, call float(parts[3])
+    except ValueError:
+        return False, "pounds is not a number"
+    # in except ValueError, return False, "pounds is not a number"
+    return True, ''
+# return True and ""
 
 
-# TODO: assign `records` to read_donations(DATA_FILE), `valid` to []
-# TODO: loop over `records`; unpack validate_donation(record) as ok, reason
-# TODO: if `ok`, append `record` to `valid`
-# TODO: else print "rejected", the record's ID plus ":", and `reason`
+
+records = read_donations(DATA_FILE)
+valid = []
+# assign `records` to read_donations(DATA_FILE), `valid` to []
+for record in records:
+    ok, reason = validate_donation(record)
+    # loop over `records`; unpack validate_donation(record) as ok, reason
+    if ok:
+        valid.append(record)
+        # if `ok`, append `record` to `valid`
+    else:
+        print("rejected", record[:4], ":", reason)
+    # else print "rejected", the record's ID plus ":", and `reason`
+
 print(len(valid), "usable records out of", len(records))
 
 # Step 1, answer 1:
