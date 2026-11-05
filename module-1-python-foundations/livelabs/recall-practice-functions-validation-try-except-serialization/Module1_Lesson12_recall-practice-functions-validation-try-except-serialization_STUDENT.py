@@ -27,7 +27,13 @@ fill it in before you run the file again.
 # none at all.
 print('----- 1. Any Number of Arguments With *args -----')
 # TODO: define total(*numbers) that returns sum(numbers)
+def total(*numbers):
+    return sum(numbers)
 
+print(total(1, 2, 3))
+print(total(10, 20))
+print(total())
+print(total(4, 4, 4, 4))
 
 # TODO: call it with 1, 2, 3 and print the result
 # TODO: call it with 10, 20 and print the result
@@ -38,7 +44,7 @@ print('----- 1. Any Number of Arguments With *args -----')
 #                         calls in Any Number of Arguments With *args and run
 #                         it to check.
 # Your answer:
-#
+# 16
 #
 
 
@@ -48,7 +54,17 @@ print('----- 1. Any Number of Arguments With *args -----')
 print('----- 2. Any Number of Named Arguments With **kwargs -----')
 # TODO: define describe_game(title, **details) that prints title,
 # then loops over details.items() printing "  {key}: {value}"
+def describe_game(title, **details):
+    print(title)
+    for x, y in details.items():
+        print(f"{x} : {y}")
 
+print(type(describe_game("game" : "Chess", {"players" : 2}, {"category" : "Strategy"})))
+describe_game("Uno", players=4)
+
+
+"""print(describe_game("Chess", players=2, category = "Strategy"))
+print(describe_game("Uno", players=4))"""
 
 # TODO: call it with "Chess", players=2, category="Strategy"
 
@@ -57,5 +73,5 @@ print('----- 2. Any Number of Named Arguments With **kwargs -----')
 #                         call in Any Number of Named Arguments With **kwargs
 #                         and run it to check.
 # Your answer:
-#
+# it prints Uno, players : 4
 #
