@@ -59,7 +59,7 @@ def describe_game(title, **details):
     for x, y in details.items():
         print(f"{x} : {y}")
 
-print(type(describe_game("game" : "Chess", {"players" : 2}, {"category" : "Strategy"})))
+print(type(describe_game("Chess", {"players" : 2}, {"category" : "Strategy"})))
 describe_game("Uno", players=4)
 
 
