@@ -1,0 +1,74 @@
+{
+  "records": 17,
+  "total_pounds": 300.0,
+  "lb_per_item": {
+    "rice": {
+      "items": 1,
+      "pounds": 25.0
+    },
+    "black beans": {
+      "items": 1,
+      "pounds": 18.0
+    },
+    "apples": {
+      "items": 1,
+      "pounds": 12.0
+    },
+    "pasta": {
+      "items": 1,
+      "pounds": 30.0
+    },
+    "milk": {
+      "items": 1,
+      "pounds": 8.0
+    },
+    "carrots": {
+      "items": 1,
+      "pounds": 15.0
+    },
+    "tuna": {
+      "items": 1,
+      "pounds": 22.0
+    },
+    "eggs": {
+      "items": 1,
+      "pounds": 6.0
+    },
+    "potatoes": {
+      "items": 1,
+      "pounds": 40.0
+    },
+    "diced tomatoes": {
+      "items": 1,
+      "pounds": 16.0
+    },
+    "oatmeal": {
+      "items": 1,
+      "pounds": 10.0
+    },
+    "onions": {
+      "items": 1,
+      "pounds": 20.0
+    },
+    "chicken soup": {
+      "items": 1,
+      "pounds": 24.0
+    },
+    "cheese": {
+      "items": 1,
+      "pounds": 12.0
+    },
+    "ground turkey": {
+      "items": 1,
+      "pounds": 9.0
+    },
+    "squash": {
+      "items": 1,
+      "pounds": 18.0
+    },
+    "cornmeal": {
+      "items": 1,
+      "pounds": 15.0
+    }
+  }
+}
