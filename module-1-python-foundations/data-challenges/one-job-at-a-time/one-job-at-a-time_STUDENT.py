@@ -65,7 +65,7 @@ print(len(valid), "usable records out of", len(records))
 
 # Step 2: Write `summarize_donations()` for the Category Breakdown Only
 def summarize_donations(valid_records):
-    '''summarize the donation of the records into valid records, total pounds, and by category
+    '''summarize the count of the donation of the records into valid records, total pounds, and by category
     This function does not validate records'''
     # add a one-sentence docstring naming its one job
     # Rubric exceed step : plus one docstring states what its function is not responsible for, like validating records.
@@ -94,6 +94,16 @@ def summarize_donations(valid_records):
 
 summary = summarize_donations(valid) 
 # assign `summary` to summarize_donations(valid)
+
+category_pounds = 0.0
+for pound in summary["by_category"].values():
+    category_pounds += pound["pounds"]
+if category_pounds == summary["total_pounds"]:
+       print(True, "check passed")
+else:
+        print(False, "category_pounds:", category_pounds, "do not match total pounds:", summary["total_pounds"])
+# Rubric extra step : code checks that the category pounds add up to total_pounds.
+
 print("records:", summary["records"], "| total pounds:",
       summary["total_pounds"])
 for category, stats in summary["by_category"].items():
@@ -118,7 +128,7 @@ def export_summary(summary, path):
 
 
 def run_pipeline(in_path, out_path, summarize):
-    """Running the donation pipeline read, validate, and summarize to out path"""
+    """Running the donation pipeline read, validate, and summarize to an export"""
     # add a one-sentence docstring naming its one job
     kept = []
     for x in read_donations(in_path):
@@ -137,8 +147,8 @@ print("wrote", written)
 for func in [read_donations, validate_donation, summarize_donations,
              export_summary]:
     print(func.__name__ + ":", func.__doc__.splitlines()[0])
-print(len)
-print(len("abc"))
+#print(len)
+#print(len("abc"))
 
 # Step 3, answer 1: What did print(len) and print(len("abc")) each print, and what do the parentheses do?
 # print(len) : <built-in function len> , print(len("abc")) > 3
@@ -192,7 +202,7 @@ def summarize_pounds_per_items(valid_records):
                 "total_pounds" : total_pounds,
                 "lb_per_item" : lb_per_item
             }
-
+# Rubric extra step : writes a third summarizer, like pounds per item, and swaps it in with no other edits.
 
 run_pipeline(DATA_FILE, "donation_summary.json", summarize_by_day)
 # call run_pipeline(DATA_FILE, "donation_summary.json", summarize_by_day)
@@ -213,8 +223,12 @@ print("records:", reloaded_two["records"], "| total pounds:",
       reloaded_two["total_pounds"])
 for item, stats in sorted(reloaded_two["lb_per_item"].items()):
     print(item, stats["items"], "donations,", stats["pounds"], "lbs")
-    
+
 # Step 4, answer 1: How many of your other functions did you edit for the swap? If any, what was the summarizer reaching into?
-# 
+# 0. I didn't change any function for the swap. In the print, I had to call my reloaded_two 
+# and my new variable I set (lb_per_item). The summarize acts as a parameter.
 # Step 4, answer 2: Three dates show only 1 donation. Why, and what should the coordinator see?
-#
+# 3 dates show 1 donation while the rest show 2 because it did not pass the validate donation function in step 1.
+# we can see that those 3 dates that only show one, have value errors which (as stated in step 1):
+# wrong field count, missing category, and pounds is not a number.
+# The coordinator should see the errors so they can quickly correct them before relying on a summarizer.
