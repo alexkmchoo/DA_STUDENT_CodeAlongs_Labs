@@ -42,17 +42,26 @@ print(connect4)
 # Teach BoardGame to describe itself in plain words, so printing a game shows
 # its title and how many are left.
 print('----- 2. Step 1: Add __str__ -----')
+class BoardGame:
+    def __init__(self, title, players_available,
+                 category):
+        self.title = title
+        self.players_available = players_available
+        self.category = category
+    def __str__(self):
+        return f"{self.title}, {self.players_available} left"
 # TODO: keep __init__ from before
 # TODO: add __str__(self) that returns
 # f"{self.title}, {self.players_available} left"
-
+connect4 = BoardGame("Connect Four", 4, "Strategy")
+print(connect4)
 
 # TODO: create connect4 again, then print(connect4)
 
 # DISCUSS: The Step 1 code never calls __str__ by name. So why did
 #          print(connect4) change? Talk it over with your partner.
 # Your answer:
-#
+# python automatically runs the __str__ if its identified
 #
 
 
@@ -62,7 +71,16 @@ print('----- 2. Step 1: Add __str__ -----')
 print('----- 3. Step 2: Add __repr__ Too -----')
 # TODO: keep __init__ and __str__ from Step 1
 # TODO: add __repr__(self) that returns f"BoardGame('{self.title}')"
-
+class BoardGame:
+    def __init__(self, title, players_available,
+                 category):
+        self.title = title
+        self.players_available = players_available
+        self.category = category
+    def __str__(self):
+        return f"{self.title}, {self.players_available} left"
+    def __repr__(self):
+        return f"BoardGame('{self.title}')"
 
 # ===== 4. Now Test repr() =====
 # This asks Python for the exact version of one game instead of the friendly
@@ -71,8 +89,9 @@ print('----- 3. Step 2: Add __repr__ Too -----')
 #
 # PREDICT before you run: What will print(repr(connect4)) show? Write your
 #                         guess before you run it.
-# Your answer:
-#
+# Your answer: 
+# the class and then the name, since we are returning self.title
+# so BoardGame('Connect four')
 #
 print('----- 4. Now Test repr() -----')
 connect4 = BoardGame("Connect Four", 4, "Strategy")
@@ -81,7 +100,7 @@ print(repr(connect4))
 # DISCUSS: Why did the Now Test repr() code print BoardGame('Connect Four') and
 #          not Connect Four, 4 left? Talk it over with your partner.
 # Your answer:
-#
+# We only returned the title when we made the __repr__ method
 #
 
 
@@ -92,10 +111,24 @@ print(repr(connect4))
 # PREDICT before you run: Inside print([connect4, uno]), which method runs for
 #                         each object: __str__ or __repr__? Predict both
 #                         printed lines with your partner before you run.
-# Your answer:
+# Your answer: __repr__ will run because it's inside brackets? im not sure
 #
 #
 print('----- 5. The Real Gotcha: A List of Objects -----')
 # TODO: create connect4 and uno again
+class BoardGame:
+    def __init__(self, title, players_available,
+                 category):
+        self.title = title
+        self.players_available = players_available
+        self.category = category
+    def __str__(self):
+        return f"{self.title}, {self.players_available} left"
+    def __repr__(self):
+        return f"BoardGame('{self.title}')"
 # TODO: print(connect4) alone
+connect4 = BoardGame("Connect Four", 4, "Strategy")
+uno = BoardGame("Uno", 8, "Party")
+print(connect4)
 # TODO: print a list containing both: [connect4, uno]
+print([connect4, uno])
