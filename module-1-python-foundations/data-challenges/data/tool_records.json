@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Power Drill",
+    "tools_available": 8,
+    "total_stock": 10,
+    "needs_inspection": true,
+    "status": "returned",
+    "last_checkout": "2026-11-17"
+  },
+  {
+    "name": "Ladder",
+    "tools_available": 3,
+    "total_stock": 15,
+    "needs_inspection": false,
+    "status": "returned",
+    "last_checkout": "2026-09-11"
+  },
+  {
+    "name": "Pressure Washer",
+    "tools_available": 0,
+    "total_stock": 5,
+    "needs_inspection": true,
+    "status": "checked out",
+    "last_checkout": "2026-08-23"
+  },
+  {
+    "name": "Hammer",
+    "tools_available": 16,
+    "total_stock": 20,
+    "needs_inspection": false,
+    "status": "returned",
+    "last_checkout": "2026-08-21"
+  },
+  {
+    "name": "Pilers",
+    "tools_available": 0,
+    "total_stock": 2,
+    "needs_inspection": false,
+    "status": "checked out",
+    "last_checkout": "2026-10-17"
+  },
+  {
+    "name": "Grass cutter",
+    "tools_available": 1,
+    "total_stock": 6,
+    "needs_inspection": false,
+    "status": "returned",
+    "last_checkout": "2026-10-28"
+  },
+  {
+    "name": "Power Saw",
+    "tools_available": 0,
+    "total_stock": 3,
+    "needs_inspection": true,
+    "status": "checked out",
+    "last_checkout": "2026-11-2"
+  },
+  {
+    "name": "Car Jack",
+    "tools_available": 1,
+    "total_stock": 2,
+    "needs_inspection": false,
+    "status": "returned",
+    "last_checkout": "2026-12-2"
+  }
+]
