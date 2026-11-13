@@ -5,7 +5,8 @@
     "total_stock": 10,
     "needs_inspection": true,
     "status": "returned",
-    "last_checkout": "2026-11-17"
+    "last_checkout": "2026-11-17",
+    "passed_inspection": true
   },
   {
     "name": "Ladder",
@@ -13,7 +14,8 @@
     "total_stock": 15,
     "needs_inspection": false,
     "status": "returned",
-    "last_checkout": "2026-09-11"
+    "last_checkout": "2026-09-11",
+    "passed_inspection": true
   },
   {
     "name": "Pressure Washer",
@@ -21,7 +23,8 @@
     "total_stock": 5,
     "needs_inspection": true,
     "status": "checked out",
-    "last_checkout": "2026-08-23"
+    "last_checkout": "2026-08-23",
+    "passed_inspection": false
   },
   {
     "name": "Hammer",
@@ -29,7 +32,8 @@
     "total_stock": 20,
     "needs_inspection": false,
     "status": "returned",
-    "last_checkout": "2026-08-21"
+    "last_checkout": "2026-08-21",
+    "passed_inspection": true
   },
   {
     "name": "Pilers",
@@ -37,7 +41,8 @@
     "total_stock": 2,
     "needs_inspection": false,
     "status": "checked out",
-    "last_checkout": "2026-10-17"
+    "last_checkout": "2026-10-17",
+    "passed_inspection": true
   },
   {
     "name": "Grass cutter",
@@ -45,7 +50,8 @@
     "total_stock": 6,
     "needs_inspection": false,
     "status": "returned",
-    "last_checkout": "2026-10-28"
+    "last_checkout": "2026-10-28",
+    "passed_inspection": true
   },
   {
     "name": "Power Saw",
@@ -53,7 +59,8 @@
     "total_stock": 3,
     "needs_inspection": true,
     "status": "checked out",
-    "last_checkout": "2026-11-2"
+    "last_checkout": "2026-11-2",
+    "passed_inspection": false
   },
   {
     "name": "Car Jack",
@@ -61,6 +68,7 @@
     "total_stock": 2,
     "needs_inspection": false,
     "status": "returned",
-    "last_checkout": "2026-12-2"
+    "last_checkout": "2026-12-2",
+    "passed_inspection": true
   }
 ]
