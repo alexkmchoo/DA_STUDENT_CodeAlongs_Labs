@@ -122,9 +122,40 @@ def is_tool_available(tools):
 # ===== Step 4: Instantiate 2+ Objects, Confirm Independent Storage =====
 # The same proof Day 13's lecture asked for, now on a class you designed
 # yourself. Predict what each print() will show before you run it.
-
-
 # TODO: Instantiate 2+ Objects, Confirm Independent Storage
+power_drill = Tools("Power Drill", 8, 10, True, "returned", "2026-11-17", True)
+hammer_time = Tools("Hammer", 16, 20, False, "returned", "2026-08-21", True)
+valvetronic = Tools("Car Jack", 1, 2, False, "returned", "2026-12-2", True)
+
+print(power_drill.tools_available) 
+# prediction : 8
+# output : 8
+print(hammer_time.tools_available)
+# prediction : 16
+# output : 16
+print(valvetronic.tools_available)
+# prediction : 1
+# output : 1
+
+power_drill.check_out()
+# called checkout, so the checkout should be updated to today
+
+print(power_drill.last_checkout)
+# prediction : 2026-11-14 (today's date, would be different if I ran it another day)
+# output : 2026-11-14
+print(hammer_time.last_checkout)
+# prediction : 2026-08-21, wasn't called so output stays the same
+# output : 2026-08-21
+print(valvetronic.last_checkout)
+# prediction : 2026-12-2, wasn't called, so output stays the same
+# output : 2026-12-2
+
+# lets call another one to show that it also changes!
+valvetronic.check_out()
+print(valvetronic.last_checkout)
+# this was 2026-12-2 before, let's see if it changes, it should print out today's date as well : 2026-11-14
+# output : 2026-11-14
+
 
 # ===== Step 5: Justify Your Design Choice in 2-3 Sentences =====
 
