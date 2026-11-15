@@ -117,7 +117,8 @@ def is_tool_available(tools):
             # continue so the program doesn't end
         print(f'{tool.name} | availablity: {tool.tools_available}')
 
-# Help call this method PLEASE TINA
+# Help call this method PLEASE TINA , I DONT WANT TO CONSUlT AI
+
 
 # ===== Step 4: Instantiate 2+ Objects, Confirm Independent Storage =====
 # The same proof Day 13's lecture asked for, now on a class you designed
@@ -160,8 +161,10 @@ print(valvetronic.last_checkout)
 # ===== Step 5: Justify Your Design Choice in 2-3 Sentences =====
 
 # Your answer:
-#
-#
+# The idea for my functions was to make sure all the attributes were being used. I didn't want a single one to be useless, kinda like
+# how station-id wasn't used in the previous lab. The avaiablity makes sure there is stock or if  it passed inspection 
+# before someone can use it, the checkout is for updating the stock and the date when one gets checked out, and the input is 
+# to help people identify which tools we have and which ones they can use.
 
 # ----- Share Out -----
 # Last 15 minutes, back together as a class. Bring:
