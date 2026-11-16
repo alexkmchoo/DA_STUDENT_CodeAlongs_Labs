@@ -27,7 +27,22 @@ fill it in before you run the file again.
 print('----- 1. Setup: A Class and Its Objects -----')
 # TODO: define SupplyItem with __init__ storing name, count,
 # department
+class SupplyItem:
+    def __init__(self, name, count, department):
+        self.name = name
+        self.count = count
+        self.department = department
+    def __str__(self):
+        return f"{self.name}, {self.count}, {self.department}"
 
+supplies = [SupplyItem("Jerseys", 12, "clothing"),
+      SupplyItem("Fishbowls", 2, "animals"),
+      SupplyItem("Phone things", 20, "phonecases"),
+      SupplyItem("Halloween", 29, "decorations"),
+      SupplyItem("Tape", 10, "office")
+]
+for x in supplies:
+    print(x.name, x.count, x.department)
 
 # TODO: create a list called supplies with 4 SupplyItem objects
 # of your own choosing
@@ -40,7 +55,14 @@ print('----- 2. Search 1: Linear Scan -----')
 # TODO: define find_by_name_linear(supplies, name) that loops over
 # supplies and returns the item whose .name matches, or None if
 # nothing matches
+def find_by_name_linear(supplies, name):
+    for item in supplies:
+        if item.name == name:
+            return item
+    return None
 
+pp = find_by_name_linear(supplies, "Tape")
+print("found!:", pp.name, pp.count)
 
 # TODO: call it looking for "Tape", then print the result's name
 # and count
@@ -59,8 +81,10 @@ print('----- 2. Search 1: Linear Scan -----')
 print('----- 3. Search 2: Dict-Keyed Lookup -----')
 # TODO: build supplies_by_name as a dict comprehension keyed by
 # each item's .name, valued as the item itself
+supplies_by_name = {item.name: item for item in supplies}
 
-
+variable = supplies_by_name.get("Tape")
+print(variable)
 # TODO: look up "Tape" with .get(), then print its name and count
 
 # PREDICT before you run: What does supplies_by_name.get("Nope") return? Agree
@@ -68,8 +92,8 @@ print('----- 3. Search 2: Dict-Keyed Lookup -----')
 #                         print(supplies_by_name.get("Nope")) under the Tape
 #                         lookup in Search 2: Dict-Keyed Lookup and run it.
 # Your answer:
-#
-#
+# None
+# None
 #
 # DISCUSS: What is the Big-O of each search, and why does the dict lookup scale
 #          better as the list grows? Agree on both answers with your partner.
