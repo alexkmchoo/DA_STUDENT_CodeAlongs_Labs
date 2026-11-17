@@ -35,18 +35,32 @@ SUBMIT
 import random  # Python's built-in module for random values
 
 # TODO: paste your class here (or the sample LibraryTool from the slides)
+class LibraryTool:
+    def __init__(self, tool_name, quantity_available, requires_inspection):
+        self.tool_name = tool_name
+        self.quantity_available = quantity_available
+        self.requires_inspection = requires_inspection
 
+    def is_available(self):
+        return self.quantity_available > 0
 
 def make_batch(size):
-    # TODO: make an empty list called batch
-    # TODO: loop `size` times with: for i in range(size):
-    # TODO: inside the loop, create one object and append it to batch
-    # TODO: give each object a unique name, e.g. f"Tool{i}"
-    # TODO: use random.randint(0, 5) for any number attribute
-    # TODO: after the loop, return batch
-    pass
+    # make an empty list called batch
+    batch = []
+    for i in range(size):
+        # loop `size` times with: for i in range(size):
+        batch.append(LibraryTool(f"Tool{i}",random.randint(0, 5), random.choice([True, False])))
+        # inside the loop, create one object and append it to batch
+        # give each object a unique name, e.g. f"Tool{i}"
+        # use random.randint(0, 5) for any number attribute
+    return batch
+    # after the loop, return batch
 
+small_batch = make_batch(10)
+medium_batch = make_batch(1000)
+large_batch = make_batch(100000)
 
+print(len(small_batch), len(medium_batch), len(large_batch))
 # TODO: small_batch = make_batch(10)
 # TODO: make medium_batch (1,000) and large_batch (100,000) the same way
 # TODO: print len() of all three batches to check their sizes
@@ -56,19 +70,27 @@ def make_batch(size):
 # own class and a much bigger batch.
 
 def find_by_name_linear(batch, name):
+    for x in batch:
+        if x.tool_name == name:
+            return x
+    return None
     # TODO: loop over batch, one object at a time
     # TODO: if the object's name equals name, return the object
     # TODO: after the loop, return None (nothing matched)
-    pass
+    
 
 
 def build_lookup(batch):
+    return {x.tool_name: x for x in batch}
     # TODO: return a dict: {obj.name: obj for obj in batch}
     # TODO: (use your class's real name attribute, e.g. tool_name)
-    pass
+    
 
-
+lookup = build_lookup(large_batch)
 # TODO: lookup = build_lookup(large_batch)
+#name = "Tool99999"
+print(find_by_name_linear(large_batch, "Tool99999").tool_name)
+print(lookup.get("Tool99999").tool_name)
 # TODO: pick a name you know is in large_batch, like "Tool99999"
 # TODO: print what find_by_name_linear returns for that name
 # TODO: print what lookup.get() returns for the same name
@@ -79,26 +101,44 @@ def build_lookup(batch):
 # grows, and which should stay roughly flat?
 
 import time  # Python's built-in module; time.perf_counter() is new
+import numpy as np
 
 # TODO: predict first: which time grows with size? Write it here:
 # Prediction:
+pairs = [(len(small_batch), small_batch),
+         (len(medium_batch), medium_batch),
+         (len(large_batch), large_batch)
+]
+# make a list of (size, batch) pairs for your three batches
+for size, batch in pairs:
+    # loop over that list: for size, batch in pairs:
+    lookup = build_lookup(batch)
+    # lookup = build_lookup(batch)
+    start = time.perf_counter()
+    # start = time.perf_counter()
+    find_by_name_linear(batch, "NotThere")
+    # run find_by_name_linear(batch, "NotThere")
+    linear_time = np.round((time.perf_counter() - start),7)
+    #  linear_time = time.perf_counter() - start
+    
+    start = time.perf_counter()
+    # same thing, set the start
+    lookup.get("NotThere")
+    # time lookup.get("NotThere") the same way, as dict_time
+    dict_time = np.round((time.perf_counter() - start),7)
+    # make somethign called dict_time bc it's in the print 
+    print(size, linear_time, dict_time)
+    # print(size, linear_time, dict_time)
 
-# TODO: make a list of (size, batch) pairs for your three batches
-# TODO: loop over that list: for size, batch in pairs:
-# TODO:   lookup = build_lookup(batch)
-# TODO:   start = time.perf_counter()
-# TODO:   run find_by_name_linear(batch, "NotThere")
-# TODO:   linear_time = time.perf_counter() - start
-# TODO:   time lookup.get("NotThere") the same way, as dict_time
-# TODO:   print(size, linear_time, dict_time)
 # TODO: search for "NotThere" on purpose: a missing name is the worst case
 # TODO: 1.5e-06 in your output means 0.0000015 seconds
 
 # ===== Step 4: Answer Your Manager's Question in One Sentence, in Big-O Terms =====
 
 # Your answer:
-#
-#
+# As the workload increases, its better to use a dict for a direct lookup because it runs faster. 
+# If the workload is small like the small or medium batch its better to use a list.
+# 
 
 # ===== Step 5: Optional Stretch: Ask an AI How to Speed Up Your Linear Scan, Then Make It Prove It =====
 # Stretch work only - beyond the core lab budget. Take it if you finish
@@ -107,7 +147,7 @@ import time  # Python's built-in module; time.perf_counter() is new
 # chatbot fact claim.
 
 # Your answer:
-#
+# 
 #
 
 # ----- Share Out -----
