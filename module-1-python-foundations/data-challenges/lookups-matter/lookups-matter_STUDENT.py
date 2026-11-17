@@ -41,14 +41,27 @@ print("comparisons:", count)
 
 
 # Step 2: Total the Comparisons for All 20 Swipes in `door_checkins.txt`
-# TODO: open CHECKINS_FILE in a with block as `f`
-# TODO: inside it, assign `swipes` to f.read().splitlines()
-# TODO: assign `linear_total` and `not_members` to 0
-# TODO: loop over `swipes`; call find_linear(members, member_id)
-# TODO: print the ID, the name or "NOT A MEMBER", and the comparisons
-# TODO: add each count to `linear_total`
-# TODO: add 1 to `not_members` for every swipe with no row
-'''
+with open (CHECKINS_FILE, 'r') as f:
+    swipes = f.read().splitlines()
+# open CHECKINS_FILE in a with block as `f`
+# inside it, assign `swipes` to f.read().splitlines()
+linear_total = 0
+not_members = 0
+# assign `linear_total` and `not_members` to 0
+for member_id in swipes:
+    row, comparisons = find_linear(members, member_id)
+    # loop over `swipes`; call find_linear(members, member_id)
+    # grabbed row, comparisons from Step 1 row, count
+    linear_total += comparisons
+    # add each count to `linear_total`
+    if row is None:
+        print(member_id, "NOT A MEMBER", comparisons)
+        # print the ID, the name or "NOT A MEMBER", and the comparisons
+        not_members +=1
+        # add 1 to `not_members` for every swipe with no row
+    else:
+        print(member_id, row["name"], comparisons)
+
 print("swipes:", len(swipes), "| not members:", not_members)
 print("linear total comparisons:", linear_total)
 
@@ -64,7 +77,7 @@ print("linear total comparisons:", linear_total)
 # TODO: add 1 to `build_steps` for every row
 # TODO: write find_dict(members_by_id, member_id)
 # TODO: make find_dict() return members_by_id.get(member_id), 1
-
+'''
 print("build cost:", build_steps, "| keys in the dict:", len(members_by_id))
 
 # TODO: assign `linear_running` to 0 and `dict_running` to build_steps
@@ -105,9 +118,8 @@ print("whole morning | linear:", linear_running, "| dict:", dict_running,
 # TODO: replace the text below with your own verdict
 verdict = "REPLACE ME"
 print("VERDICT:", verdict)
-
+'''
 # Step 4, answer 1:
 #
 # Step 4, answer 2:
 #
-'''
