@@ -3,8 +3,8 @@
 
 import csv
 
-DATA_FILE = "member_directory.csv"  # edit the filepath with the data
-CHECKINS_FILE = "door_checkins.txt"  # edit the filepath with the data
+DATA_FILE = "/Users/alexc/Documents/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/data/member_directory.csv"  # edit the filepath with the data
+CHECKINS_FILE = "/Users/alexc/Documents/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/data/door_checkins.txt"  # edit the filepath with the data
 
 with open(DATA_FILE, newline="") as f:
     members = list(csv.DictReader(f))
@@ -12,11 +12,23 @@ with open(DATA_FILE, newline="") as f:
 
 # Step 1: Write `find_linear()` to Return the Member and Its Comparisons
 def find_linear(members, member_id):
+    comparisons = 0
+    # assign `comparisons` to 0
+    for row in members:
+        comparisons += 1
+        # loop over `members`; add 1 to `comparisons` for every row
+        if row["member_id"] == member_id:
+            return row, comparisons
+            # inside the loop, return row, comparisons on a member_id match
+    return None, comparisons 
+    # after the loop, return None, comparisons
+
+
     # TODO: assign `comparisons` to 0
     # TODO: loop over `members`; add 1 to `comparisons` for every row
     # TODO: inside the loop, return row, comparisons on a member_id match
     # TODO: after the loop, return None, comparisons
-    pass
+
 
 
 row, count = find_linear(members, "M1150")
@@ -24,8 +36,8 @@ print("members in the directory:", len(members))
 print("found:", row["name"], "at", row["home_branch"])
 print("comparisons:", count)
 
-# Step 1, answer 1:
-#
+# Step 1, answer 1: Before you run: your predicted count for M1150, and how you got it.
+# 150 cause it starts at 001 so 150-001 is 149 but we count the header so 150. I got it by looking at the file.
 
 
 # Step 2: Total the Comparisons for All 20 Swipes in `door_checkins.txt`
@@ -36,7 +48,7 @@ print("comparisons:", count)
 # TODO: print the ID, the name or "NOT A MEMBER", and the comparisons
 # TODO: add each count to `linear_total`
 # TODO: add 1 to `not_members` for every swipe with no row
-
+'''
 print("swipes:", len(swipes), "| not members:", not_members)
 print("linear total comparisons:", linear_total)
 
@@ -98,3 +110,4 @@ print("VERDICT:", verdict)
 #
 # Step 4, answer 2:
 #
+'''
