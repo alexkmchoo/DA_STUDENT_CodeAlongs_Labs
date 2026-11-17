@@ -93,7 +93,7 @@ class Tools:
         return "checked out!"
         # otherwise if its already at 0, it just returns checked out
 def tool_list(tools, name_of_tool):
-    # made a function for the tool list to portray list of tools
+    # made a function for the tool list to portray list of tools we have
     for tool in tools:
         if tool.name == name_of_tool:
             return tool
@@ -101,11 +101,13 @@ def tool_list(tools, name_of_tool):
     # raised an error here, to follow up with the user input function
 def is_tool_available(tools):
     while True:
-        x = input("Enter tool name:")
+    # so that the program just keeps running
+        x = input("Enter tool name:").title()
+        #.title() instead of .capitalize() so both words can be capitalized for any errors
         try:
             tool = tool_list(tools, x)
         except ValueError:
-            print("Sorry, we don't have that tool. Did you misspell it? Make sure it's capitalized")
+            print("Sorry, we don't have that tool. Did you misspell it?")
             #user might mispell the tool name or put it in lowercase like hammer or ladder or Pressure washer 
             y = input("press y to see the list of tools or press any other key to try again")
             # option to see the list of tools they can borrow (helps them with the name for correct input)
@@ -117,7 +119,11 @@ def is_tool_available(tools):
             # continue so the program doesn't end
         print(f'{tool.name} | availablity: {tool.tools_available}')
 
-# Help call this method PLEASE TINA , I DONT WANT TO CONSUlT AI
+#tools = [Tools(**record) for record in tool_records]
+#is_tool_available(tools)
+# This is commented out, but if we want the input to run, we put this back in
+# It won't print step 4 without commenting this out sadly
+
 
 
 # ===== Step 4: Instantiate 2+ Objects, Confirm Independent Storage =====
