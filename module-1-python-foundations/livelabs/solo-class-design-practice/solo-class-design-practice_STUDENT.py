@@ -121,7 +121,7 @@ def is_tool_available(tools):
 
 #tools = [Tools(**record) for record in tool_records]
 #is_tool_available(tools)
-# This is commented out, but if we want the input to run, we put this back in
+# This is commented out, but if we want the input to run, we put this back
 # It won't print step 4 without commenting this out sadly
 
 
