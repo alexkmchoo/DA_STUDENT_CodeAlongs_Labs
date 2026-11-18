@@ -35,7 +35,7 @@ class BoardGame:
         self.category = category
 
     def is_available(self):
-        return self.players_available >= 0
+        return self.players_available > 0
 
 
 # ===== 2. The Script, Part 2: The Data =====
@@ -45,7 +45,7 @@ print('----- 2. The Script, Part 2: The Data -----')
 games = [
     BoardGame("Catan", 3, "Strategy"),
     BoardGame("Uno", 0, "Card"),
-    BoardGame("Chess", 2, "strategy"),
+    BoardGame("Chess", 2, "Strategy"),
     BoardGame("Sorry!", 4, "Strategy"),
 ]
 
@@ -56,7 +56,7 @@ games = [
 # Watch-only demo: the code is already here. Run it and read the output.
 print('----- 3. The Script, Part 3: Counting Strategy Games -----')
 strategy_count = 0
-for i in range(len(games) - 1):
+for i in range(len(games)):
     if games[i].category == "Strategy":
         strategy_count += 1
 
