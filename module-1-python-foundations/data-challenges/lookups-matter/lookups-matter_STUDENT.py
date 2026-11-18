@@ -59,9 +59,9 @@ print("swipes:", len(swipes), "| not members:", not_members)
 print("linear total comparisons:", linear_total)
 
 # Step 2, answer 1: Before you run: the cost of each of the first three swipes, their sum, and the cost of a swipe that is not a member.
-#
+# 4, 12, and 27. Sum would be 43. The cost is 312 because it would scan each one by one
 # Step 2, answer 2: Which swipe cost the most, and why?
-#
+# M1313 costs the most bc based on the file, it only goes up to M1312 and that doesn't exist so it has to run through the whole list
 
 
 # Step 3: Build `members_by_id` and Find the Swipe Where It Pays Off
@@ -109,11 +109,12 @@ print("dict pays off at swipe:", pays_off_at)
 print("morning totals | linear:", linear_running, "| dict:", dict_running)
 
 # Step 3, answer 1: Before you run: at which swipe does the dict total first drop below the linear total?
-#
+# 6 M1313 linear: 574 dict: 318// It drops at swipe 6
 # Step 3, answer 2: Why a dictionary keyed on member_id fits the door's job. Quote the swipe where it pulled ahead.
-#
+# The door job scans (or just asks in verbal terms) the member ID so it directly correlates. "6 M1313 linear: 574 dict: 318"
 # Step 3, answer 3: A morning where the plain list would be the better choice.
-#
+# Single lookups which will cost more. Small plain lists as well. We see from the output that building a dict costs 312 lookups
+# whereas it can cost significantly less
 
 
 # Step 4: Test an AI Speed Claim Against Your Totals and Write a Verdict
@@ -138,6 +139,11 @@ verdict = "Linear search would be O(n) because it looks through the rows one at 
 print("VERDICT:", verdict)
 
 # Step 4, answer 1: Hold the AI's claim against your three comparisons. Which one did it match, and which did it miss?
-# 
+#  AI missed 2924 for linear. It said 3120. It's within range, but is wrong
+# it matched 312 rows to build but forgot to add the 20 extra rows to make it 332, so it's actually incorrect
 # Step 4, answer 2: Did its number count the cost of building the dictionary? What did it say when you pasted your totals back?
-#
+# No the number didn't count the cost of building the dict, only mentioned it 20 and 312.
+# The AI said this when I sent my totals back :
+# the dictionary became more efficient after the 6th lookup, overcoming its initial construction cost of 312 operations. 
+# Across 20 lookups, linear search required 2,924 operations compared to just 332 for the dictionary, 
+# making the dictionary approximately 8.8 times more efficient in total operation count.
