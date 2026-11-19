@@ -36,12 +36,12 @@ print("Rosa Alvarez, weekly hours:", weekly_hours(lines, "E101"))
 print(weekly_hours(lines, "E104"))
 print(weekly_hours(lines, "E103")) 
 
-# Step 1, answer 1:
+# Step 1, answer 1: Before you run: Rosa's weekly hours (E101), added up by hand from the CSV.
+# 40
+# Step 1, answer 2: How to read a traceback, in 2-3 bullets: what the last line tells you, what each block above it tells you, and where you found that out.
 #
-# Step 1, answer 2:
-#
-# Step 1, answer 3:
-#
+# Step 1, answer 3 :Which function the traceback ended in, and which line really held the bug.
+# 
 
 
 # Step 2: Trace the ZeroDivisionError Back to the Hand-Typed Staff List
@@ -74,12 +74,12 @@ for emp_id in staff:
           "| average per day:", hours / days)
 
 
-# Step 2, answer 1:
-#
-# Step 2, answer 2:
-#
-# Step 2, answer 3:
-#
+# Step 2, answer 1: Before you run: how many employees are in the CSV, counted by eye?
+# 5
+# Step 2, answer 2: How many lines printed before the crash, and which ID did it stop on?
+# 
+# Step 2, answer 3: Where the bug lives, in the division line or somewhere above it, and why, in one sentence.
+# No, the bug lives above the division line in the Staff 
 
 
 # ===== Day 2 =====
@@ -110,11 +110,11 @@ for emp in employee_ids:
             total = total + r["hours"]
     print(emp, name, "| weekly hours:", total)
 
-# Step 3, answer 1:
+# Step 3, answer 1: Before you run: Rosa's and Mei's weekly hours, added up by hand from the CSV.
+# Rosa : 40 | Mei : 32
+# Step 3, answer 2: What total held at the start of each employee's count, and the one line that explains it.
 #
-# Step 3, answer 2:
-#
-# Step 3, answer 3:
+# Step 3, answer 3: Why is Rosa's number right while Priya's equals the whole staff's hours for the week
 #
 
 
@@ -153,9 +153,9 @@ print(f"TOTAL PAYROLL: ${payroll:,.2f}")
 print(weekly_pay(40, 24))
 print(weekly_pay(44, 35))
 
-# Step 4, answer 1:
-#
-# Step 4, answer 2:
-#
-# Step 4, answer 3:
+# Step 4, answer 1: Before you run: Rosa's, Darnell's and Mei's weekly pay, worked out by hand from the handbook rule.
+# Rosa : $960 | Darnell : $1,543.50 | Mei : $896 
+# Step 4, answer 2: The two bugs you found, each with its line and what you changed it to.
+# 
+# Step 4, answer 3: Why can only Rosa's exactly-40 week catch one of the two bugs?
 #
