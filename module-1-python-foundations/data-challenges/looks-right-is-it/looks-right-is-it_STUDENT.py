@@ -38,10 +38,16 @@ print(weekly_hours(lines, "E103"))
 
 # Step 1, answer 1: Before you run: Rosa's weekly hours (E101), added up by hand from the CSV.
 # 40
+
 # Step 1, answer 2: How to read a traceback, in 2-3 bullets: what the last line tells you, what each block above it tells you, and where you found that out.
-#
-# Step 1, answer 3 :Which function the traceback ended in, and which line really held the bug.
-# 
+# The last line tells me there is a TypeError. We can't add an int and a str.
+# Each block above it tells me which line has an error. For example, I get an error in line 6 and another on 12 (because 12 calls 6)
+# I found it in my output. It tells me which line the error occurs in (Jupyter Notebook helps clean up the output a lot)
+
+# Step 1, answer 3 : Which function the traceback ended in, and which line really held the bug.
+# The traceback ended in add_hours. return total + hours tells us we are performing arthmetic, so we must add ints.
+# this also means that the str is coming from below, which is in total = add_hours(total, parts[2])
+# parts[2] is a str because it calls the day and not the hours.
 
 
 # Step 2: Trace the ZeroDivisionError Back to the Hand-Typed Staff List
@@ -77,9 +83,10 @@ for emp_id in staff:
 # Step 2, answer 1: Before you run: how many employees are in the CSV, counted by eye?
 # 5
 # Step 2, answer 2: How many lines printed before the crash, and which ID did it stop on?
-# 
+# 3 lines printed before the crash. It stopped on E103
 # Step 2, answer 3: Where the bug lives, in the division line or somewhere above it, and why, in one sentence.
-# No, the bug lives above the division line in the Staff 
+# No, the bug lives above the division line in the Staff because 106 doesn't exist, it hands back 0, which is why we are getting 
+# a ZeroDivisionError
 
 
 # ===== Day 2 =====
@@ -112,10 +119,14 @@ for emp in employee_ids:
 
 # Step 3, answer 1: Before you run: Rosa's and Mei's weekly hours, added up by hand from the CSV.
 # Rosa : 40 | Mei : 32
+
 # Step 3, answer 2: What total held at the start of each employee's count, and the one line that explains it.
-#
+# Rosa : 40 | Darnell : 86 | Mei : 118 | Samuel : 156 | Priya : 200
+# total = 0 explains it. We are doing it outside the for loop
+
 # Step 3, answer 3: Why is Rosa's number right while Priya's equals the whole staff's hours for the week
-#
+# total is set to 0 regardless. But the difference for the other employees is that it doesn't reset and adds onto the previous 
+# employee total.
 
 
 # Step 4: Fix Two Overtime Bugs That Overpay the Firm by $1,810 a Week
@@ -156,6 +167,11 @@ print(weekly_pay(44, 35))
 # Step 4, answer 1: Before you run: Rosa's, Darnell's and Mei's weekly pay, worked out by hand from the handbook rule.
 # Rosa : $960 | Darnell : $1,543.50 | Mei : $896 
 # Step 4, answer 2: The two bugs you found, each with its line and what you changed it to.
-# 
+# The first bug : In line 134 return hours * rate * 1.5. I changed it to (40 * rate) + (hours - 40) * 1.5 * rate
+# The first one counts all hours as overtime, but we just want every hour after 40 counted as overtime.
+# The second bug(s) : >= Every hour after 40 counts as overtime, >= means 40 counts as well.
+# This happens on line 133 if hours >= 40 , which I changed it into if hours > 40
+# This also happens on line 150 if total >= 40, which I also changed it into if hours > 40
+
 # Step 4, answer 3: Why can only Rosa's exactly-40 week catch one of the two bugs?
-#
+# Rosa's hours are exactly 40 and in our code we have hours set to >= 40, so she cacthes the overtime, even though she doesn't meet it
