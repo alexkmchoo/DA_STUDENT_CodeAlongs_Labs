@@ -84,6 +84,10 @@ def build_lookup(batch):
     return {x.tool_name: x for x in batch}
     # TODO: return a dict: {obj.name: obj for obj in batch}
     # TODO: (use your class's real name attribute, e.g. tool_name)
+
+# Step 5 : AI speed up
+#def find_by_name_fast(lookup, name):
+    #return lookup.get(name)
     
 
 lookup = build_lookup(large_batch)
@@ -112,6 +116,10 @@ pairs = [(len(small_batch), small_batch),
 # make a list of (size, batch) pairs for your three batches
 for size, batch in pairs:
     # loop over that list: for size, batch in pairs:
+    # start = time.perf_counter()
+    #lookup = build_lookup(batch)
+    #build_time = np.round((time.perf_counter() - start), 7)
+    # AI Speedup step 5
     lookup = build_lookup(batch)
     # lookup = build_lookup(batch)
     start = time.perf_counter()
@@ -123,6 +131,8 @@ for size, batch in pairs:
     
     start = time.perf_counter()
     # same thing, set the start
+    # find_by_name_fast(lookup, "NotThere")
+    # AI speedup step 5
     lookup.get("NotThere")
     # time lookup.get("NotThere") the same way, as dict_time
     dict_time = np.round((time.perf_counter() - start),7)
@@ -147,9 +157,17 @@ for size, batch in pairs:
 # chatbot fact claim.
 
 # Your answer:
-# 
-#
-
+# AI changed step 2 by adding this into it : def find_by_name_fast(lookup, name): return lookup.get(name)
+# It changed step 3 by calling find_by_name_fast as well by doing find_by_name_fast(lookup, "NotThere")
+# I tested it and saw that the before and after dict was way slower than the AI generated answer
+# Unchanged | 10 : 9.5e-06 | 1000 : 2.3e-05 | 100000 : 0.0027453
+# AI | 10 : 5.5e-06 | 1000 : 0.002297 | 100000 : 0.0033397
+# We can see that the AI change ran linear ran faster across all tests. As input size got larger, the results came close
+# in fact, I also tested this for an input size of 1000000 and the original linear ran faster
+# Unchanged | 1000000 0.0294433
+# AI | 1000000: 0.0300632
+# All in all though, it did work out with our input sizes. My results always showed the linear being faster than the dict search anyways
+# but this AI change made the dict even faster
 # ----- Share Out -----
 # Last 15 minutes, back together as a class. Bring:
 #
